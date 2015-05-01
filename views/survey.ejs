@@ -1,0 +1,204 @@
+<div class="row">
+	<div class="small-12 medium-8 medium-centered columns">
+		<form method="post" action="/result" data-abide>
+			<fieldset>
+				<legend>題組一</legend>
+				<div class="row">
+					<div class="small-12 columns">
+						<label for="q1">請問您認為能代表台灣的小吃有哪些？（至多五項）</label>
+					</div>
+					<div class="small-12 medium-4 columns">					
+						<input type="text" name="q1[]" required>					
+					</div>
+					<div class="small-12 medium-4 columns">
+						<input type="text" name="q1[]">
+					</div>
+					<div class="small-12 medium-4 columns">
+						<input type="text" name="q1[]">
+					</div>
+					<div class="small-12 medium-4 columns">
+						<input type="text" name="q1[]">
+					</div>
+					<div class="small-12 medium-4 columns end">
+						<input type="text" name="q1[]">
+					</div>					
+				</div>
+				<div class="row">
+					<div class="small-12 columns">
+						<label>如果您有超能力可以瞬間學一道小吃並招待外國人，您會選哪一道？
+							<input type="text" name="q2-1" required>
+						</label>
+						<label>承上題，為什麼？
+							<input type="text" name="q2-2">
+						</label>
+					</div>
+				</div>
+			</fieldset>
+			<fieldset>
+				<legend>題組二</legend>
+				<div class="row home-city">
+					<div class="small-12 columns">
+						<label>請問您是哪裡人？</label>			
+					</div>
+					<div class="small-12 medium-6 columns">
+						<select class="county" required name="county"></select>
+					</div>
+					<div class="small-12 medium-6 columns">
+						<select class="district" required name="district"></select>
+						<input class="zipcode" name="zipcode" value="" type="hidden">
+					</div>
+				</div>
+				<div class="row">
+					<div class="small-12 columns">
+						<label for="q3">在這個地方，有哪些代表性的小吃？（至多五項）</label>
+					</div>
+					<div class="small-12 medium-4 columns">					
+						<input type="text" name="q3[]" required>					
+					</div>
+					<div class="small-12 medium-4 columns">
+						<input type="text" name="q3[]">
+					</div>
+					<div class="small-12 medium-4 columns">
+						<input type="text" name="q3[]">
+					</div>
+					<div class="small-12 medium-4 columns">
+						<input type="text" name="q3[]">
+					</div>
+					<div class="small-12 medium-4 columns end">
+						<input type="text" name="q3[]">
+					</div>		
+				</div>
+				<div class="row">
+					<div class="small-12 columns">
+						<label for="q4">在這個地方，您最喜歡的小吃是？（至多五項）</label>
+					</div>
+					<div class="small-12 medium-4 columns">					
+						<input type="text" name="q4[]">					
+					</div>
+					<div class="small-12 medium-4 columns">
+						<input type="text" name="q4[]">
+					</div>
+					<div class="small-12 medium-4 columns">
+						<input type="text" name="q4[]">
+					</div>
+					<div class="small-12 medium-4 columns">
+						<input type="text" name="q4[]">
+					</div>
+					<div class="small-12 medium-4 columns end">
+						<input type="text" name="q4[]">
+					</div>		
+				</div>
+			</fieldset>
+			<fieldset>
+				<legend>基本資料</legend>
+				<div class="row">
+					<div class="small-12 columns">
+						<label>年齡
+							<input type="text" name="age" required>
+						</label>
+					</div>
+				</div>
+				<div class="row">
+					<div class="small-12 columns">
+						<label>現居地
+							<select required name="cur-city">
+								<option value=''>--請選擇--</option>
+								<option value='台北市'>台北市</option>
+								<option value='基隆市'>基隆市</option>
+								<option value='新北市'>新北市</option>
+								<option value='宜蘭縣'>宜蘭縣</option>
+								<option value='新竹縣'>新竹縣</option>
+								<option value='新竹市'>新竹市</option>
+								<option value='桃園縣'>桃園縣</option>
+								<option value='苗栗縣'>苗栗縣</option>
+								<option value='台中市'>台中市</option>
+								<option value='彰化縣'>彰化縣</option>
+							    <option value='南投縣'>南投縣</option>
+							    <option value='嘉義縣'>嘉義縣</option>
+							    <option value='雲林縣'>雲林縣</option>
+							    <option value='台南市'>台南市</option>
+							    <option value='高雄市'>高雄市</option>
+							    <option value='澎湖縣'>澎湖縣</option>
+							    <option value='屏東縣'>屏東縣</option>
+							    <option value='台東縣'>台東縣</option>
+							    <option value='花蓮縣'>花蓮縣</option>
+							    <option value='金門縣'>金門縣</option>
+							    <option value='連江縣'>連江縣</option>
+							    <option value='南海諸島'>南海諸島</option>
+							    <option value='釣魚台列嶼'>釣魚台列嶼</option>    
+							</select>
+						</label>
+					</div>
+				</div>
+				<div class="row">
+					<div class="small-12 columns">
+						<label>職業
+							<select name="job" required>
+								<option value=''>--請選擇--</option>
+								<option value="農、林、漁、牧業">農、林、漁、牧業</option>
+								<option value="礦業及土石採取業">礦業及土石採取業</option>
+								<option value="製造業">製造業</option>
+								<option value="電力及燃氣供應業">電力及燃氣供應業</option>
+								<option value="用水供應及污染整治業">用水供應及污染整治業</option>
+								<option value="營造業">營造業</option>
+								<option value="批發及零售業">批發及零售業</option>
+								<option value="運輸及倉儲業">運輸及倉儲業</option>
+								<option value="住宿及餐飲業">住宿及餐飲業</option>
+								<option value="資訊及通訊傳播業">資訊及通訊傳播業</option>
+								<option value="金融及保險業">金融及保險業</option>
+								<option value="不動產業">不動產業</option>
+								<option value="專業、科學及技術服務業">專業、科學及技術服務業</option>
+								<option value="支援服務業">支援服務業</option>
+								<option value="公共行政及國防">公共行政及國防</option>
+								<option value="強制性社會安全">強制性社會安全</option>
+								<option value="教育服務業">教育服務業</option>
+								<option value="醫療保健及社會工作服務業">醫療保健及社會工作服務業</option>
+								<option value="藝術、娛樂及休閒服務業">藝術、娛樂及休閒服務業</option>
+								<option value="其他服務業">其他服務業</option>
+								<option value="家管">家管</option>
+								<option value="學生">學生</option>
+								<option value="待業中">待業中</option>
+							</select>
+						</label>
+					</div>
+				</div>
+				<div class="row">
+					<div class="small-12 columns">
+						<label>您個人年收入為？
+							<select name="salary">
+								<option value=''>--請選擇--</option>
+								<option value="30萬以下">30萬以下</option>
+								<option value="31-50萬">31-50萬</option>
+								<option value="51-80萬">51-80萬</option>
+								<option value="81-100萬">81-100萬</option>
+								<option value="101-150萬">101-150萬</option>
+								<option value="151-200萬">151-200萬</option>
+								<option value="201萬以上">201萬以上</option>
+							</select>
+						</label>
+					</div>
+				</div>
+				<div class="row">
+					<div class="small-12 columns">
+						<label>如果您願意後續接受我們的訪談，也請留下您的email
+							<input type="text" name="email">
+						</label>
+					</div>
+				</div>
+				<div class="row">
+					<div class="small-12 columns">
+						<label>若您對我們的調查或研究有任何建議，歡迎留言指教：）
+							<textarea name="comment"></textarea>
+						</label>
+					</div>
+				</div>
+			</fieldset>
+			<div class="row">
+				<div class="small-12 columns">
+					<button type="submit">送出</button>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
+<% block('localScripts', '<script src="../custom-js/survey.js"></script>') %>

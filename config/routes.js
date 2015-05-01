@@ -36,9 +36,15 @@ module.exports.routes = {
     view: 'homepage'
   },
 
-  '/food-map': {
-    view: 'food-map'
+  '/map': {
+    view: 'map'
+  },
+
+  '/survey': {
+    view: 'survey'
   }
+
+
 
   /***************************************************************************
   *                                                                          *
