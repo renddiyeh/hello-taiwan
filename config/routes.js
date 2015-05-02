@@ -36,9 +36,7 @@ module.exports.routes = {
     view: 'homepage'
   },
 
-  '/map': {
-    view: 'map'
-  },
+  '/map': 'MapController.index',
 
   '/survey': {
     view: 'survey'

@@ -3,7 +3,7 @@ d3.json("js/twCounty2010merge.topo.json", function(error, data) {
 
     var topodata = topojson.feature(data, data.objects.layer1);
 
-    console.log(topodata);
+    //console.log(topodata);
 
   	var projection = d3.geo.mercator().center([120.979531, 23.978567]).scale(50000);
 
