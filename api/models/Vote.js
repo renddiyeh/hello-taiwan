@@ -8,7 +8,12 @@
 module.exports = {
 
   attributes: {
-
+  	voter: {
+  		model: 'voter'
+  	},
+  	food: {
+  		model: 'list'
+  	}
   }
 };
 

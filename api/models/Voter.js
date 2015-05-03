@@ -8,6 +8,10 @@
 module.exports = {
 
   attributes: {
+    q1: {
+      collection: 'vote',
+      via: 'voter'
+    },
   	q2_1: 'string',
   	q2_2: 'string',
   	city: {

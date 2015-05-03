@@ -8,7 +8,11 @@
 module.exports = {
 
   attributes: {
-    name: 'string'
+    name: 'string',
+    votes: {
+    	collection: 'vote',
+    	via: 'food'
+    }
   }
 };
 

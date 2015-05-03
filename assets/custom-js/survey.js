@@ -1,5 +1,5 @@
 $(function() {
-	$('.home-city').dk_tw_citySelector('.county', '.district', '.zipcode');
+	$('.home-city').dk_tw_citySelector('.city', '.district', '.zipcode');
 
 	var jobs = [
 		'農、林、漁、牧業','礦業及土石採取業','製造業','電力及燃氣供應業','用水供應及污染整治業',
