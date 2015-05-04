@@ -12,6 +12,9 @@ module.exports = {
   	voter: {
   		collection: 'voter',
   		via: 'city'
+  	},
+  	topThree: function(){
+  		return this.voter;
   	}
   }
 };

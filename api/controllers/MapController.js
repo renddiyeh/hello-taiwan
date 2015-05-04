@@ -8,15 +8,17 @@
 module.exports = {
 	index: function (req, res, next) {
     
-	    City.find(function(err, data) {
+	    City.find()
+        .populate('voter')
+        .exec(function (err, data) {
 
-        	if (err) return next(err);
+            if (err) return next(err);
 
-        	res.view('map', {
-        		data: data
-        	});
+            res.view('map', {
+                data: data
+            });
 
-	    });
+        });
 
 	}
 };
