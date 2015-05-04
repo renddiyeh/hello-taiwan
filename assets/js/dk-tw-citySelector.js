@@ -253,7 +253,7 @@ $.dk_tw_citySelector = {
                 }
 
                 // <option value="台北市" data-order="0">台北市</option>
-                firstSelectOption += '<option value="'+ country[i] +'" data-order="'+ i +'">'+ country[i] +'</option>';
+                firstSelectOption += '<option value="'+ (i+1) +'" data-order="'+ i +'">'+ country[i] +'</option>';
             }
 
             $selectFirst.prepend(firstSelectOption);

@@ -8,33 +8,64 @@
 module.exports = {
 	create: function(req, res, next) {
 
-	    var list = req.param('q1');
-
 	    var result = req.allParams();
+	    var voteList = result.q1;
 	    delete result.q1;
 
-	    Voter.create(result).exec(function (err, newVoter) {
-	    	for (var i = list.length - 1; i >= 0; i--) {
-		    	if (list[i] != "") {
-		    		List.findOrCreate({ name: list[i] }, { name: list[i] }).exec(function (err, newList) {
-			    		Vote.create({ voter: newVoter.id, food: newList.id });
-			    	});
-		    	}
-		    };
-	    });
+		var voterId;
 
-	    res.redirect('/map');
-	    //res.json(result);
+	    var afterVoteList = function (err, newList) {
+	    	Vote.create({ voter: voterId, food: newList.id }).exec(console.log);
+	    };
 
-	    /*Result.create(params, function(err, sleep) {
+	    var insertVoter = function () {
+	    	Voter.create(result).exec(function (err, newVoter) {
+		    	voterId = newVoter.id;
 
-	        if (err) return next(err);
+		    	console.log(newVoter);
 
-	        res.status(201);
+		    	for (var i = voteList.length - 1; i >= 0; i--) {
+			    	if (voteList[i] != "") {
+			    		List.findOrCreate({ name: voteList[i] }, { name: voteList[i] }).exec(afterVoteList);
+			    	}
+			    }
+		    });
+	    };
 
-	        res.redirect('/map');
+		var convert = function (name, cb) {
+			console.log("--start convert--");
+			console.log(name);
+			var convertedArray = [];
+			async.each(result[name], function (item, callback2) {
+				if (item != "") {
+		    		List.findOrCreate({ name: item }, { name: item }).exec(function (err, converted) {
+		    			console.log(converted);
+		    			convertedArray.push(converted.id);
+		    			callback2();
+		    		});
+		    	} else callback2();
+			}, function(err) {
+				// assign converted array back to result
+		   		result[name] = convertedArray;
+		   		console.log("--converted--");
+		   		return cb(null, 'converted');
+			});	
+		};
 
-	    });*/
+		async.series({
+		    q3: function (callback) {
+				convert('q3', callback);
+		    },
+		    q4: function (callback) {
+		        convert('q4', callback);
+		    }
+		}, function (err, results) {
+		    // all food list converted
+		    insertVoter();
+		});	    
+
+	    //res.redirect('/voter');
+	    res.ok('ok');
 	}
 };
 
