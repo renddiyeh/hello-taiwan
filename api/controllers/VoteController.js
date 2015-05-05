@@ -15,11 +15,13 @@ module.exports = {
 		var voterId;
 
 	    var afterVoteList = function (err, newList) {
+	    	if(err) console.log(err);
 	    	Vote.create({ voter: voterId, food: newList.id }).exec(console.log);
 	    };
 
 	    var insertVoter = function () {
 	    	Voter.create(result).exec(function (err, newVoter) {
+	    		if(err) console.log(err);
 		    	voterId = newVoter.id;
 
 		    	console.log(newVoter);
@@ -52,7 +54,7 @@ module.exports = {
 			});	
 		};
 
-		async.series({
+/*		async.series({
 		    q3: function (callback) {
 				convert('q3', callback);
 		    },
@@ -62,7 +64,8 @@ module.exports = {
 		}, function (err, results) {
 		    // all food list converted
 		    insertVoter();
-		});	    
+		});	  */  
+		insertVoter();
 
 	    //res.redirect('/voter');
 	    res.ok('ok');
