@@ -1,12 +1,31 @@
 $(function() {
+	// Bind to StateChange Event
+
 	$('#fullPage').fullpage();
+
+	History.Adapter.bind(window,'statechange',function(){ // Note: We are using statechange instead of popstate
+        var State = History.getState(); // Note: We are using History.getState() instead of event.statechange
+        var page = State.data.page;
+        console.log(page);
+
+        $.fn.fullpage.moveTo('Question ' + page);
+     	
+    });
+    History.replaceState({page:0}, null, '?hello-taiwan');
 
 	$.fn.fullpage.setMouseWheelScrolling(false);
     $.fn.fullpage.setAllowScrolling(false);
 
-    $('a.next').click(function() {
-    	console.log('next');
-    	$.fn.fullpage.moveSectionDown();
+    $('button.next').click(function(e) {
+    	e.preventDefault();
+    	var q = $(this).attr('data-num');
+    	History.pushState({page:q}, "Question " + q, "?q=" + q);
+    });
+
+    $('button.prev').click(function(e) {
+    	e.preventDefault();
+    	var q = $(this).attr('data-num');
+    	History.pushState({page:q}, "Question " + q, "?q=" + q);
     });
 
 	$('.home-city').dk_tw_citySelector('.city', '.district', '.zipcode');
