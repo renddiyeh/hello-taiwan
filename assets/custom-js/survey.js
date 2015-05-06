@@ -1,4 +1,14 @@
 $(function() {
+	$('#fullPage').fullpage();
+
+	$.fn.fullpage.setMouseWheelScrolling(false);
+    $.fn.fullpage.setAllowScrolling(false);
+
+    $('a.next').click(function() {
+    	console.log('next');
+    	$.fn.fullpage.moveSectionDown();
+    });
+
 	$('.home-city').dk_tw_citySelector('.city', '.district', '.zipcode');
 
 	var jobs = [

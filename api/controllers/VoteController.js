@@ -54,7 +54,7 @@ module.exports = {
 			});	
 		};
 
-/*		async.series({
+/*		async.parallel({
 		    q3: function (callback) {
 				convert('q3', callback);
 		    },
@@ -70,5 +70,6 @@ module.exports = {
 	    //res.redirect('/voter');
 	    res.ok('ok');
 	}
+
 };
 

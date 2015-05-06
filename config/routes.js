@@ -33,14 +33,18 @@ module.exports.routes = {
   ***************************************************************************/
 
   '/': {
-    view: 'homepage'
+    view: 'index'
   },
 
   '/map': 'MapController.index',
 
   '/survey': {
     view: 'survey'
-  }
+  },
+
+  'get /city/:id/votes' : 'CityController.votes',
+
+  'get /list/rank' : 'ListController.rank'
 
 
 

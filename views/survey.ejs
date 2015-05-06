@@ -1,30 +1,34 @@
-<div class="row">
-	<div class="small-12 medium-8 medium-centered columns">
+<section id="survey" class="row">
+	<div class="small-12 medium-10 medium-centered columns">
 		<form method="post" action="/vote" data-abide>
-			<fieldset>
+			<div class="section">
 				<legend>題組一</legend>
 				<div class="row">
-					<div class="small-12 columns">
-						<label for="q1">請問您認為能代表台灣的小吃有哪些？（至多五項）</label>
-					</div>
-					<div class="small-12 medium-4 columns">					
+					<div class="small-6 columns">
+						<label for="q1">請問您認為能代表台灣的小吃有哪些？（至多五項）</label>					
 						<input type="text" name="q1[]" required>					
-					</div>
-					<div class="small-12 medium-4 columns">
+						<input type="text" name="q1[]">
+						<input type="text" name="q1[]">
+						<input type="text" name="q1[]">
 						<input type="text" name="q1[]">
 					</div>
-					<div class="small-12 medium-4 columns">
-						<input type="text" name="q1[]">
+					<div class="small-6 columns">
+						<label for="q2">請問您最喜歡的台灣小吃有哪些？（至多五項）</label>					
+						<input type="text" name="q2[]" required>					
+						<input type="text" name="q2[]">
+						<input type="text" name="q2[]">
+						<input type="text" name="q2[]">
+						<input type="text" name="q2[]">
 					</div>
-					<div class="small-12 medium-4 columns">
-						<input type="text" name="q1[]">
-					</div>
-					<div class="small-12 medium-4 columns end">
-						<input type="text" name="q1[]">
-					</div>					
+					<div class="small-12 columns text-right">
+						<a href="#" class="button next">下一題</a>
+					</div>		
 				</div>
+			</div>
+			<div class="section">
+				<legend>題組二</legend>
 				<div class="row">
-					<div class="small-12 columns">
+					<div class="small-12 medium-6 columns">
 						<label>如果您有超能力可以瞬間學一道小吃並招待外國人，您會選哪一道？
 							<input type="text" name="q2_1">
 						</label>
@@ -32,10 +36,13 @@
 							<input type="text" name="q2_2">
 						</label>
 					</div>
+					<div class="small-12 columns text-right">
+						<a href="#" class="button next">下一題</a>
+					</div>
 				</div>
-			</fieldset>
-			<fieldset>
-				<legend>題組二</legend>
+			</div>
+			<div class="section">
+				<legend>題組三</legend>
 				<div class="row home-city">
 					<div class="small-12 columns">
 						<label>請問您是哪裡人？</label>			
@@ -49,103 +56,64 @@
 					</div>
 				</div>
 				<div class="row">
-					<div class="small-12 columns">
-						<label for="q3">在這個地方，有哪些代表性的小吃？（至多五項）</label>
-					</div>
-					<div class="small-12 medium-4 columns">					
+					<div class="small-6 columns">
+						<label for="q3">在這個地方，有哪些代表性的小吃？（至多五項）</label>					
 						<input type="text" name="q3[]">					
-					</div>
-					<div class="small-12 medium-4 columns">
+						<input type="text" name="q3[]">
+						<input type="text" name="q3[]">
+						<input type="text" name="q3[]">
 						<input type="text" name="q3[]">
 					</div>
-					<div class="small-12 medium-4 columns">
-						<input type="text" name="q3[]">
-					</div>
-					<div class="small-12 medium-4 columns">
-						<input type="text" name="q3[]">
-					</div>
-					<div class="small-12 medium-4 columns end">
-						<input type="text" name="q3[]">
-					</div>		
-				</div>
-				<div class="row">
-					<div class="small-12 columns">
-						<label for="q4">在這個地方，您最喜歡的小吃是？（至多五項）</label>
-					</div>
-					<div class="small-12 medium-4 columns">					
+					<div class="small-6 columns">		
+						<label for="q4">在這個地方，您最喜歡的小吃是？（至多五項）</label>					
 						<input type="text" name="q4[]">					
-					</div>
-					<div class="small-12 medium-4 columns">
+						<input type="text" name="q4[]">
+						<input type="text" name="q4[]">
+						<input type="text" name="q4[]">
 						<input type="text" name="q4[]">
 					</div>
-					<div class="small-12 medium-4 columns">
-						<input type="text" name="q4[]">
+					<div class="small-12 columns text-right">
+						<a href="#" class="button next">下一題</a>
 					</div>
-					<div class="small-12 medium-4 columns">
-						<input type="text" name="q4[]">
-					</div>
-					<div class="small-12 medium-4 columns end">
-						<input type="text" name="q4[]">
-					</div>		
 				</div>
-			</fieldset>
-			<fieldset>
+			</div>
+			<div class="section">
 				<legend>基本資料</legend>
 				<div class="row">
-					<div class="small-12 columns">
+					<div class="small-12 medium-6 columns">
 						<label>年齡
 							<input type="text" name="age">
 						</label>
-					</div>
-				</div>
-				<div class="row">
-					<div class="small-12 columns">
 						<label>現居地
 							<select id="curCity" name="curCity">
 								<option>--請選擇--</option>
 							</select>
 						</label>
-					</div>
-				</div>
-				<div class="row">
-					<div class="small-12 columns">
 						<label>職業
 							<select id="job" name="job">
 								<option>--請選擇--</option>								
 							</select>
 						</label>
-					</div>
-				</div>
-				<div class="row">
-					<div class="small-12 columns">
 						<label>您個人年收入為？
 							<select id="salary" name="salary">
 								<option>--請選擇--</option>								
 							</select>
 						</label>
-					</div>
-				</div>
-				<div class="row">
-					<div class="small-12 columns">
 						<label>如果您願意後續接受我們的訪談，也請留下您的email
 							<input type="text" name="email">
 						</label>
-					</div>
-				</div>
-				<div class="row">
-					<div class="small-12 columns">
 						<label>若您對我們的調查或研究有任何建議，歡迎留言指教：）
 							<textarea name="comment"></textarea>
 						</label>
 					</div>
 				</div>
-			</fieldset>
+			</div>
 			<div class="row">
-				<div class="small-12 columns">
+				<div class="small-12 columns text-right">
 					<button type="submit">送出</button>
 				</div>
 			</div>
 		</form>
 	</div>
-</div>
+</section>
 <% block('localScripts', '<script src="../custom-js/survey.js"></script>') %>
