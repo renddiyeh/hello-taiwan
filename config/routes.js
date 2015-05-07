@@ -36,7 +36,7 @@ module.exports.routes = {
     view: 'index'
   },
 
-  '/map': 'MapController.index',
+  '/result': 'ResultController.index',
 
   '/survey': {
     view: 'survey'

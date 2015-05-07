@@ -8,18 +8,22 @@
 module.exports = {
 
   attributes: {
-    q1: {
+    q1_1: {
       collection: 'vote',
       via: 'voter'
     },
+    q1_2: 'array',
   	q2_1: 'string',
   	q2_2: 'string',
   	city: {
   		model: 'city'
   	},
-  	district: 'string',
-  	q3: 'array',
-  	q4: 'array',
+    otherCity: {
+      type: 'string'
+    },
+  	q3_1: 'array',
+  	q3_2: 'array',
+    sex: 'string',
   	age: 'integer',
   	curCity: {
   		model: 'city'

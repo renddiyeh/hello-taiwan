@@ -18,16 +18,13 @@ module.exports = {
       var sortAndPrint = function (counts) {
         counts.sort(function(a, b) { return b.count - a.count });
         async.map(counts, function (food, cb) {
-          console.log(food);
           List.findOne({id : food.id}).exec(function (e, r) {
             if(e) console.log(e);
             cb('', {food: r.name, count: food.count});
           });
         }, function (err, results) {
           if(err) console.log(err);
-          console.log(results);
           res.json(results);
-          // return JSON.stringify(results);
         });
         
       };      
@@ -51,11 +48,9 @@ module.exports = {
 	          	});
 	        }, function (err) {
 	        	if(err) console.log(err);
-	          	console.log(counts);
 	        	// 取得原始資料，因為async.js只吃array，先轉換成array
 	        	var arr = toCountArray(counts);
 	        	// 然後sort
-	        	console.log(arr);
 	        	sortAndPrint(arr);
 	        });
 	    } else res.json([]);

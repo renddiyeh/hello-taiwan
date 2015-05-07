@@ -9,22 +9,20 @@ module.exports = {
 	create: function(req, res, next) {
 
 	    var result = req.allParams();
-	    var voteList = result.q1;
-	    delete result.q1;
+	    var voteList = result.q1_1;
+	    delete result.q1_1;
 
 		var voterId;
 
 	    var afterVoteList = function (err, newList) {
 	    	if(err) console.log(err);
-	    	Vote.create({ voter: voterId, food: newList.id }).exec(console.log);
+	    	Vote.create({ voter: voterId, food: newList.id });
 	    };
 
 	    var insertVoter = function () {
 	    	Voter.create(result).exec(function (err, newVoter) {
 	    		if(err) console.log(err);
 		    	voterId = newVoter.id;
-
-		    	console.log(newVoter);
 
 		    	for (var i = voteList.length - 1; i >= 0; i--) {
 			    	if (voteList[i] != "") {
@@ -35,8 +33,6 @@ module.exports = {
 	    };
 
 		var convert = function (name, cb) {
-			console.log("--start convert--");
-			console.log(name);
 			var convertedArray = [];
 			async.each(result[name], function (item, callback2) {
 				if (item != "") {
@@ -48,27 +44,30 @@ module.exports = {
 		    	} else callback2();
 			}, function(err) {
 				// assign converted array back to result
+				if(err) console.log(err);
 		   		result[name] = convertedArray;
-		   		console.log("--converted--");
 		   		return cb(null, 'converted');
 			});	
 		};
 
-/*		async.parallel({
-		    q3: function (callback) {
-				convert('q3', callback);
+		async.parallel({
+			q1_2: function (callback) {
+				convert('q1_2', callback);
 		    },
-		    q4: function (callback) {
-		        convert('q4', callback);
+		    q3_1: function (callback) {
+				convert('q3_1', callback);
+		    },
+		    q3_2: function (callback) {
+		        convert('q3_2', callback);
 		    }
 		}, function (err, results) {
 		    // all food list converted
 		    insertVoter();
-		});	  */  
+		});	    
 		insertVoter();
 
-	    //res.redirect('/voter');
-	    res.ok('ok');
+	    res.redirect('/result');
+	    //res.ok('ok');
 	}
 
 };

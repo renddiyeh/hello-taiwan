@@ -6,21 +6,20 @@
  */
 
 module.exports = {
-	create: function(req, res, next) {
+	index: function (req, res, next) {
+    
+	    City.find()
+        .populate('voter')
+        .exec(function (err, data) {
 
-	    var params = req.params.all();
+            if (err) return next(err);
 
-	    res.json(params);
+            res.view('result', {
+                data: data
+            });
 
-	    /*Result.create(params, function(err, sleep) {
+        });
 
-	        if (err) return next(err);
-
-	        res.status(201);
-
-	        res.redirect('/map');
-
-	    });*/
 	}
 };
 
