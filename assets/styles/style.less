@@ -1,0 +1,117 @@
+@import url(http://fonts.googleapis.com/css?family=Roboto:900);
+
+body {
+	font-family: 'Lantinghei TC', 'Yu Gothic', sans-serif;
+}
+
+#hello {
+	margin: 1em auto;
+}
+
+@intro-color: #B6F6E5;
+@color1: #86DBF2;
+@color2: #f9c37d;
+@color3: #b3e0c8;
+@color4: #cccccc;
+
+@sub1: #0071bc;
+@sub3: #4a6d56;
+
+@submit: white;
+
+#fullPage {
+	background-color: @intro-color;
+}
+
+.define(@var) {
+  @colorSet: 'color@{var}';
+}
+
+.mixin-loop (@index) when (@index > 0) {
+	.section-@{index}{
+	    .define(@index);
+	    background-color: @@colorSet;
+	  }
+	.mixin-loop(@index - 1);
+}
+.mixin-loop (0) {}
+.mixin-loop(4);
+
+.subheader {
+	font-family: 'Lantinghei TC', 'Yu Gothic', sans-serif;
+	font-size: 10pt;
+}
+
+.section-1 .subheader {
+	color: @sub1;
+}
+
+.section-3 .subheader {
+	color: @sub3;
+}
+
+.next {
+	max-width: 60px;
+	cursor: pointer;
+	padding-bottom: 1.5rem;
+}
+
+.pageNum {
+	font-family: 'Roboto';
+	font-size: 48pt;
+	color: white;
+}
+
+form label {
+	font-size: 12pt;
+	color: black;
+	padding-bottom: 1rem;
+}
+
+button.submit {
+	font-family: 'Lantinghei TC', 'Yu Gothic', sans-serif;
+	font-size: 12pt;
+	font-weight: bold;
+	background: none;
+	border-color: @submit;
+	border-width: 2px;
+	color: @submit;
+}
+
+button.submit:hover, button.submit:focus {
+	background-color: rgba(255,255,255,.2);
+}
+
+
+@media only screen and (min-width: 40.063em) {
+	.subheader {
+		font-size: 12pt;
+		padding-top: 1.4em;
+	}
+	.pageNum {
+		font-size: 72pt;
+	}
+	form label {
+		font-size: 14pt;
+	}
+	button.submit {
+		font-size: 14pt;
+	}
+} 
+
+
+.sep {
+	width: 100%;
+	height: 1px;
+	background: black;
+}
+
+/* Stuffs */
+
+.tooltipsy {
+    padding: 10px;
+    max-width: 200px;
+    color: #303030;
+    background-color: #f5f5b5;
+    border: 1px solid #deca7e;
+}

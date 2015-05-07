@@ -1,0 +1,27 @@
+<div class="row">
+	<div class="small-12 medium-6 columns">
+		<h4>大家覺得代表台灣的食物</h4>
+		<table class="allRank">
+			<tr>
+				<th>小吃</th>
+				<th>票數</th>
+			</tr>
+		</table>
+	</div>
+	<div class="small-12 medium-6 columns">
+		<h4>各城市覺得代表台灣的食物</h4>
+		<table>
+			<tr>
+				<th>城市</th>
+				<th>得票狀況</th>
+			</tr>
+		<% for(var i = 0, l = data.length; i < l; i++) { %>
+			<tr>
+		    	<td <%= (i == l-1) ? 'class=lastCity' : '' %>><%= data[i].name %></td>
+		    	<td class="votes-by-city" data-city="<%= data[i].id %>"></td>
+			</tr>
+		<% } %>
+		</table>
+	</div>
+</div>
+<% block('localScripts', '<script src="custom-js/result.js"></script>') %>

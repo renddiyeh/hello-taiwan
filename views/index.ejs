@@ -1,0 +1,187 @@
+<div id="fullPage">	
+	<form method="post" action="/vote">
+		<div class="section" data-anchor="Question 0">
+			<div class="row">
+				<div class="small-12 medium-10 medium-centered columns"	>
+					<img id="hello" src="images/hello-taiwan.gif" alt="hello-taiwan">		
+				
+					<p>您好，我們是Hello Taiwan團隊，目前正進行一項能代表台灣的小吃調查研究，希望藉此記錄台灣食物地圖的一角。此份調查大約會花您五到十分鐘填答，本調查的區間將從2015年5月7日至5月21日，問卷取得的研究資料將成為我們後續深度研究台灣小吃歷史脈絡的珍貴資料。</p>
+					<p>這份調查的即時排名和數據也會在您填答完畢時顯現，歡迎參考，也萬分感謝您的參與。</p>
+					
+				</div>
+				<div class="small-12 columns text-center">
+					<img class="next" src="/images/next.svg" data-num="1">
+				</div>
+			</div>		
+		</div>
+		<div class="section section-1" data-anchor="Question 1">		
+			<div class="row">
+				<div class="small-12 columns">
+					<div class="sep"></div>
+				</div>
+				<div class="small-12 medium-1 columns">
+					<h2 class="pageNum">1</h2>
+				</div>
+				<div class="small-12 medium-11 columns">
+					<p class="subheader">*此問卷的小吃定義為庶民美食。填答時請盡量避免加上店名:-)</p>
+				</div>
+			</div>
+			<div class="row valign-bottom">				
+				<div class="small-6 medium-5 medium-offset-1 columns">
+					<label for="q1_1">請問您認為能<strong>代表</strong>台灣的小吃有哪些？<small>（至多五項）</small></label>					
+					<input type="text" name="q1_1[]" required data-noEqual='1'>					
+					<input type="text" name="q1_1[]" data-noEqual='1'>
+					<input type="text" name="q1_1[]" data-noEqual='1'>
+					<input type="text" name="q1_1[]" data-noEqual='1'>
+					<input type="text" name="q1_1[]" data-noEqual='1'>
+				</div>
+				<div class="small-6 medium-5 columns end">
+					<label for="q1_2">請問您<strong>最喜歡</strong>的台灣小吃有哪些？<small>（至多五項）</small></label>					
+					<input type="text" name="q1_2[]" required data-noEqual='2'>
+					<input type="text" name="q1_2[]" data-noEqual='2'>
+					<input type="text" name="q1_2[]" data-noEqual='2'>
+					<input type="text" name="q1_2[]" data-noEqual='2'>
+					<input type="text" name="q1_2[]" data-noEqual='2'>
+				</div>				
+				<div class="small-12 columns text-right">		
+					<img class="next" src="/images/next.svg" data-num="2">
+				</div>		
+			</div>
+		</div>
+		<div class="section section-2" data-anchor="Question 2">
+			<div class="row">
+				<div class="small-12 columns">
+					<div class="sep"></div>
+				</div>
+				<div class="small-12 medium-1 end columns">
+					<h2 class="pageNum">2</h2>
+				</div>
+			</div>
+			<div class="row">
+				<div class="small-12 medium-5 medium-offset-1 columns">
+					<label>如果您有超能力可以瞬間學一道小吃並招待外國人，您會選哪一道？
+						<input type="text" name="q2_1" required>
+					</label>
+					<label>承上題，為什麼？
+						<input type="text" name="q2_2" required>
+					</label>
+				</div>
+				<div class="small-12 columns text-right">
+					<img class="next" src="/images/next.svg" data-num="3">
+				</div>
+			</div>
+		</div>
+		<div class="section section-3" data-anchor="Question 3">
+			<div class="row">
+				<div class="small-12 columns">
+					<div class="sep"></div>
+				</div>
+				<div class="small-12 medium-1 columns">
+					<h2 class="pageNum">3</h2>
+				</div>
+				<div class="small-12 medium-11 columns">
+					<p class="subheader">*此問卷的小吃定義為庶民美食。填答時請盡量避免加上店名:-)</p>
+				</div>
+			</div>
+			<div class="row">
+				<div class="small-12 medium-5 medium-offset-1 end columns">
+					<label>請問您是哪裡人？</label>			
+				</div>
+			</div>
+			<div class="row">
+				<div class="small-12 medium-5 medium-offset-1 columns">
+					<select class="city" required name="city">
+						<option>--請選擇--</option>
+					</select>
+				</div>
+				<div class="small-12 medium-5 end columns">
+					<input type="text" class="otherCity" name="otherCity" placeholder="其他地區請填" disabled>
+				</div>
+			</div>
+			<div class="row">
+				<div class="small-6 medium-5 medium-offset-1 columns">
+					<label for="q3_1">在這個地方，有哪些<strong>代表性</strong>的小吃？<small>（至多五項）</small></label>					
+					<input type="text" name="q3_1[]" data-noEqual='3'>					
+					<input type="text" name="q3_1[]" data-noEqual='3'>
+					<input type="text" name="q3_1[]" data-noEqual='3'>
+					<input type="text" name="q3_1[]" data-noEqual='3'>
+					<input type="text" name="q3_1[]" data-noEqual='3'>
+				</div>
+				<div class="small-6 medium-5 end columns">		
+					<label for="q3_2">在這個地方，您<strong>最喜歡</strong>的小吃是？<small>（至多五項）</small></label>					
+					<input type="text" name="q3_2[]" data-noEqual='4'>					
+					<input type="text" name="q3_2[]" data-noEqual='4'>
+					<input type="text" name="q3_2[]" data-noEqual='4'>
+					<input type="text" name="q3_2[]" data-noEqual='4'>
+					<input type="text" name="q3_2[]" data-noEqual='4'>
+				</div>
+				<div class="small-12 columns text-right">
+					<img class="next" src="/images/next.svg" data-num="4">
+				</div>
+			</div>
+		</div>
+		<div class="section section-4" data-anchor="Question 4">
+			<div class="row">
+				<div class="small-12 columns">
+					<div class="sep"></div>
+				</div>
+				<div class="small-12 medium-1 end columns">
+					<h2 class="pageNum">4</h2>
+				</div>
+			</div>			
+			<div class="row">
+				<div class="small-12 medium-5 medium-offset-1 columns">
+					<label>生理性別</label>
+					<input type="radio" name="sex" value="男" id="male" required><label for="male">男性</label>
+      				<input type="radio" name="sex" value="女" id="female" required><label for="female">女性</label>
+      			</div>
+      		</div>
+      		<div class="row">
+      			<div class="small-12 medium-5 medium-offset-1 columns">
+					<label>年齡
+						<input type="text" name="age" placeholder="請直接填入年齡" required>
+					</label>
+				</div>
+      			<div class="small-12 medium-5 columns">
+					<label>現居地
+						<select id="curCity" name="curCity" required>
+							<option>--請選擇--</option>
+						</select>
+					</label>
+				</div>
+      			<div class="small-12 medium-5 medium-offset-1  columns">
+					<label>職業
+						<select id="job" name="job" required>
+							<option>--請選擇--</option>								
+						</select>
+					</label>
+				</div>
+      			<div class="small-12 medium-5 columns">
+					<label>您個人年收入為？
+						<select id="salary" name="salary" required>
+							<option>--請選擇--</option>								
+						</select>
+					</label>
+				</div>
+      			<div class="small-12 medium-5 medium-offset-1 columns">
+					<label>如果您願意後續接受我們的訪談，也請留下您的email
+						<input type="text" name="email">
+					</label>
+				</div>
+				<div class="small-12 medium-5 columns end">
+					<label>若您對我們的調查或研究有任何建議，歡迎留言指教：）
+						<textarea name="comment"></textarea>
+					</label>
+				</div>					
+			</div>
+			<div class="row">
+				<div class="small-12 medium-11 columns text-right">
+					<button class="submit" type="submit">送出</button>
+				</div>
+			</div>
+		</div>
+		<input type='hidden' name='_csrf' value='<%= _csrf %>'>
+	</form>
+	
+</div>
+<% block('localScripts', '<script src="/custom-js/main.js"></script>') %>
