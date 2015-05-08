@@ -4,7 +4,7 @@
 * @description :: TODO: You might write a short summary of how this model works and what it represents here.
 * @docs        :: http://sailsjs.org/#!documentation/models
 */
-
+required: true
 module.exports = {
 
   attributes: {
@@ -12,24 +12,53 @@ module.exports = {
       collection: 'vote',
       via: 'voter'
     },
-    q1_2: 'array',
-  	q2_1: 'string',
-  	q2_2: 'string',
+    q1_2: {
+      type: 'array',
+      required: true
+    },
+  	q2_1: {
+      type: 'string',
+      required: true
+    },
+  	q2_2: {
+      type: 'string',
+      required: true
+    },
   	city: {
-  		model: 'city'
+  		model: 'city',
+      required: true
   	},
     otherCity: {
       type: 'string'
     },
-  	q3_1: 'array',
-  	q3_2: 'array',
-    sex: 'string',
-  	age: 'integer',
+  	q3_1: {
+      type: 'array',
+      required: true
+    },
+  	q3_2: {
+      type: 'array',
+      required: true
+    },
+    sex: {
+      type: 'string',
+      required: true
+    },
+  	age: {
+      type: 'integer',
+      required: true
+    },
   	curCity: {
-  		model: 'city'
+  		model: 'city',
+      required: true
   	},
-  	job: 'integer',
-  	salary: 'integer',
+  	job: {
+      type: 'integer',
+      required: true
+    },
+  	salary: {
+      type: 'integer',
+      required: true
+    },
   	email: 'email',
   	comment: 'text'
   }
