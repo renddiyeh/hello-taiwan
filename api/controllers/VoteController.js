@@ -16,7 +16,12 @@ module.exports = {
 
 	    var afterVoteList = function (err, newList) {
 	    	if(err) console.log(err);
-	    	Vote.create({ voter: voterId, food: newList.id });
+	    	Vote.create({ voter: voterId, food: newList.id }).exec(function (err, created) {
+    			if(err) {
+	    			console.log(err);	
+	    			return res.serverError(err);
+	    		}
+	    	});
 	    };
 
 	    var insertVoter = function () {
@@ -26,7 +31,13 @@ module.exports = {
 
 		    	for (var i = voteList.length - 1; i >= 0; i--) {
 			    	if (voteList[i] != "") {
-			    		List.findOrCreate({ name: voteList[i] }, { name: voteList[i] }).exec(afterVoteList);
+			    		List.findOrCreate({ name: voteList[i] }, { name: voteList[i] }).exec( function (err, converted) {
+			    			if(err) {
+				    			console.log(err);	
+				    			return res.serverError(err);
+				    		}
+			    			afterVoteList();
+			    		});
 			    	}
 			    }
 		    });
@@ -37,7 +48,10 @@ module.exports = {
 			async.each(result[name], function (item, callback2) {
 				if (item != "") {
 		    		List.findOrCreate({ name: item }, { name: item }).exec(function (err, converted) {
-		    			console.log(converted);
+		    			if(err) {
+		    				console.log(err);	
+		    				return res.serverError(err);
+		    			}
 		    			convertedArray.push(converted.id);
 		    			callback2();
 		    		});
@@ -50,7 +64,7 @@ module.exports = {
 			});	
 		};
 
-		async.parallel({
+		async.series({
 			q1_2: function (callback) {
 				convert('q1_2', callback);
 		    },

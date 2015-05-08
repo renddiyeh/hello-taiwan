@@ -1,12 +1,11 @@
 $(function() {
 
 	$('#fullPage').fullpage();
-	$(document).foundation();
 
 	History.Adapter.bind(window,'statechange',function(){ // Note: We are using statechange instead of popstate
         var State = History.getState(); // Note: We are using History.getState() instead of event.statechange
         var page = State.data.page;
-        $.fn.fullpage.moveTo('Question ' + page);     	
+        $.fn.fullpage.moveTo('question-' + page);     	
     });
     History.replaceState({page:0}, null, '?hello-taiwan');
 
@@ -15,7 +14,8 @@ $(function() {
 
     $('.next').click(function(e) {
     	var q = $(this).attr('data-num');
-    	History.pushState({page:q}, "Question " + q, "?q=" + q);
+    	
+		History.pushState({page:q}, "Question " + q, "?q=" + q);
     });
 
 	var jobs = [
@@ -44,9 +44,9 @@ $(function() {
 
 	$('.city').change(function() {
 		if($(this).find(':selected').val() == 23)
-			$('.otherCity').attr('disabled', false);
+			$('.otherCity').attr('type', 'text').focus();
 		else 
-			$('.otherCity').attr('disabled', true).val('');
+			$('.otherCity').attr('type', 'hidden').val('');
 	});
 
 });
