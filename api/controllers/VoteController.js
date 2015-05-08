@@ -9,8 +9,10 @@ module.exports = {
 	create: function(req, res, next) {
 
 	    var result = req.allParams();
-	    var voteList = result.q1_1;
+	    var voteList = uniq(result.q1_1);
 	    delete result.q1_1;
+
+	    result['ip'] = req.ip;
 
 		var voterId;
 
@@ -21,6 +23,7 @@ module.exports = {
 	    			console.log(err);	
 	    			return res.serverError(err);
 	    		}
+	    		return res.json('success');
 	    	});
 	    };
 
@@ -45,7 +48,8 @@ module.exports = {
 
 		var convert = function (name, cb) {
 			var convertedArray = [];
-			async.each(result[name], function (item, callback2) {
+			var uniqArray = uniq(result[name]);
+			async.each(uniqArray, function (item, callback2) {
 				if (item != "") {
 		    		List.findOrCreate({ name: item }, { name: item }).exec(function (err, converted) {
 		    			if(err) {
@@ -79,8 +83,17 @@ module.exports = {
 		    insertVoter();
 		});	   
 
-	    res.redirect('/result');
-	    //res.ok('ok');
+	    function uniq(a) {
+		    var prims = {"boolean":{}, "number":{}, "string":{}}, objs = [];
+
+		    return a.filter(function(item) {
+		        var type = typeof item;
+		        if(type in prims)
+		            return prims[type].hasOwnProperty(item) ? false : (prims[type][item] = true);
+		        else
+		            return objs.indexOf(item) >= 0 ? false : objs.push(item);
+		    });
+		}
 	}
 
 };

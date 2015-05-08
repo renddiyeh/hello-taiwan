@@ -1,6 +1,6 @@
 <div id="fullPage">	
-	<form method="post" action="/vote" id="theForm">	
-		<div class="section" data-anchor="question-0">
+	<form id="survey">	
+		<div class="section" data-anchor="hello">
 			<div class="row">
 				<div class="small-12 medium-10 medium-centered columns"	>
 					<img id="hello" src="images/hello-taiwan.gif" alt="hello taiwan cover gif">		
@@ -36,18 +36,18 @@
 			</div>
 			<div class="row">				
 				<div class="small-6 medium-5 medium-offset-1 columns">									
-					<input type="text" name="q1_1[]" required data-noEqual='1'>					
-					<input type="text" name="q1_1[]" data-noEqual='1'>
-					<input type="text" name="q1_1[]" data-noEqual='1'>
-					<input type="text" name="q1_1[]" data-noEqual='1'>
-					<input type="text" name="q1_1[]" data-noEqual='1'>
+					<input type="text" name="q1_1[]" required >	
+					<input type="text" name="q1_1[]" >
+					<input type="text" name="q1_1[]" >
+					<input type="text" name="q1_1[]" >
+					<input type="text" name="q1_1[]" >
 				</div>
 				<div class="small-6 medium-5 columns end">				
-					<input type="text" name="q1_2[]" required data-noEqual='2'>
-					<input type="text" name="q1_2[]" data-noEqual='2'>
-					<input type="text" name="q1_2[]" data-noEqual='2'>
-					<input type="text" name="q1_2[]" data-noEqual='2'>
-					<input type="text" name="q1_2[]" data-noEqual='2'>
+					<input type="text" name="q1_2[]" required >
+					<input type="text" name="q1_2[]" >
+					<input type="text" name="q1_2[]" >
+					<input type="text" name="q1_2[]" >
+					<input type="text" name="q1_2[]" >
 				</div>				
 				<div class="small-12 columns text-right">		
 					<img class="next" src="/images/next.svg" data-num="2">
@@ -97,7 +97,7 @@
 			<div class="row">
 				<div class="small-12 medium-5 medium-offset-1 columns">
 					<select class="city" required name="city">
-						<option>--請選擇--</option>
+						<option value="">--請選擇--</option>
 					</select>
 				</div>
 				<div class="small-12 medium-5 end columns">
@@ -114,18 +114,18 @@
 			</div>
 			<div class="row">
 				<div class="small-6 medium-5 medium-offset-1 columns">			
-					<input type="text" name="q3_1[]" data-noEqual='3'>					
-					<input type="text" name="q3_1[]" data-noEqual='3'>
-					<input type="text" name="q3_1[]" data-noEqual='3'>
-					<input type="text" name="q3_1[]" data-noEqual='3'>
-					<input type="text" name="q3_1[]" data-noEqual='3'>
+					<input type="text" name="q3_1[]" >
+					<input type="text" name="q3_1[]" >
+					<input type="text" name="q3_1[]" >
+					<input type="text" name="q3_1[]" >
+					<input type="text" name="q3_1[]" >
 				</div>
 				<div class="small-6 medium-5 end columns">				
-					<input type="text" name="q3_2[]" data-noEqual='4'>					
-					<input type="text" name="q3_2[]" data-noEqual='4'>
-					<input type="text" name="q3_2[]" data-noEqual='4'>
-					<input type="text" name="q3_2[]" data-noEqual='4'>
-					<input type="text" name="q3_2[]" data-noEqual='4'>
+					<input type="text" name="q3_2[]" >
+					<input type="text" name="q3_2[]" >
+					<input type="text" name="q3_2[]" >
+					<input type="text" name="q3_2[]" >
+					<input type="text" name="q3_2[]" >
 				</div>
 				<div class="small-12 columns text-right">
 					<img class="next" src="/images/next.svg" data-num="4">
@@ -151,7 +151,7 @@
       		<div class="row">
       			<div class="small-6 medium-5 medium-offset-1 columns">
 					<label>年齡
-						<input type="text" name="age" placeholder="請直接填入年齡" required>
+						<input type="number" name="age" placeholder="請直接填入年齡" required>
 					</label>
 				</div>
       			<div class="small-6 medium-5 columns end">
@@ -181,7 +181,7 @@
 			<div class="row">
       			<div class="small-12 medium-5 medium-offset-1 columns">
 					<label>如果您願意後續接受我們的訪談，也請留下您的email
-						<input type="text" name="email">
+						<input type="email" name="email">
 					</label>
 				</div>
 				<div class="small-12 medium-5 columns end">
@@ -197,6 +197,15 @@
 			</div>
 		</div>
 		<input type='hidden' name='_csrf' value='<%= _csrf %>'>
+		<div class="section section-5" data-anchor="finish">
+			<div class="row">
+				<div class="small-12 medium-10 medium-centered columns">
+					<h3>問卷結束，謝謝您。</h3>
+					<p>由於我們希望不只看到真正能代表台灣的小吃選項，還能看出台灣各地區和不同世代的異同，因此除了自己填答，也歡迎你拉爺爺奶奶、爸爸媽媽及親朋好友都來填答，一起拼出台灣人的小吃地圖。</p>
+					<a href="/result" class="button">看結果</a>
+				</div>
+			</div>
+		</div>
 	</form>
 	
 </div>

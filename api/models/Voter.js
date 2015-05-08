@@ -32,12 +32,10 @@ module.exports = {
       type: 'string'
     },
   	q3_1: {
-      type: 'array',
-      required: true
+      type: 'array'
     },
   	q3_2: {
-      type: 'array',
-      required: true
+      type: 'array'
     },
     sex: {
       type: 'string',
@@ -60,7 +58,8 @@ module.exports = {
       required: true
     },
   	email: 'email',
-  	comment: 'text'
+  	comment: 'text',
+    ip: 'ip'
   }
 };
 

@@ -4,18 +4,34 @@ $(function() {
 
 	History.Adapter.bind(window,'statechange',function(){ // Note: We are using statechange instead of popstate
         var State = History.getState(); // Note: We are using History.getState() instead of event.statechange
-        var page = State.data.page;
-        $.fn.fullpage.moveTo('question-' + page);     	
+        var page = State.data.name;
+        $.fn.fullpage.moveTo(page);     	
     });
-    History.replaceState({page:0}, null, '?hello-taiwan');
+    History.replaceState({page:0, name: 'hello'}, null, '?hello-taiwan');
 
 	$.fn.fullpage.setMouseWheelScrolling(false);
     $.fn.fullpage.setAllowScrolling(false);
 
+    var validate = function(section) {
+    	var ok = true;
+    	var required = section.find('[required]');
+    	required.each(function() {
+    		if(!$(this).val()) {
+    			ok = false;
+    			$(this).trigger('focus');
+    			return;
+    		}
+    	});
+    	return ok;
+    }
+
     $('.next').click(function(e) {
     	var q = $(this).attr('data-num');
-    	
-		History.pushState({page:q}, "Question " + q, "?q=" + q);
+    	if (q>1) {
+    		var section = $(this).closest('.section');
+    		if(validate(section))
+    			History.pushState({page:q, name: 'question-' + q}, "Question " + q, "?q=" + q);
+    	} else History.pushState({page:q, name: 'question-' + q}, "Question " + q, "?q=" + q);
     });
 
 	var jobs = [
@@ -48,5 +64,15 @@ $(function() {
 		else 
 			$('.otherCity').attr('type', 'hidden').val('');
 	});
+
+	$("#survey").submit(function (e) {
+		e.preventDefault();
+		var data = $(this).serialize()		
+		$.post("/vote", data).done(function(data) {
+			console.log(data)
+			if(data == 'success')
+				$.fn.fullpage.moveTo('finish');
+		})
+	})
 
 });
