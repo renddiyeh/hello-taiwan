@@ -36,7 +36,7 @@ module.exports = {
 				    			console.log(err);	
 				    			return res.serverError(err);
 				    		}
-			    			afterVoteList();
+			    			afterVoteList(err, converted);
 			    		});
 			    	}
 			    }
@@ -77,8 +77,7 @@ module.exports = {
 		}, function (err, results) {
 		    // all food list converted
 		    insertVoter();
-		});	    
-		insertVoter();
+		});	   
 
 	    res.redirect('/result');
 	    //res.ok('ok');
