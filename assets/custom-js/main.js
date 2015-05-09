@@ -7,7 +7,7 @@ $(function() {
         var page = State.data.name;
         $.fn.fullpage.moveTo(page);     	
     });
-    History.replaceState({page:0, name: 'hello'}, null, '?hello');
+    History.replaceState({page:0, name: 'hello'}, "Hello! Taiwan", '?hello');
 
 	$.fn.fullpage.setMouseWheelScrolling(false);
     $.fn.fullpage.setAllowScrolling(false);
