@@ -14,14 +14,13 @@ module.exports = {
 
 		var voterId;
 
-	    var afterVoteList = function (err, newList) {
-	    	if(err) console.log(err);
+	    var afterVoteList = function (newList, callback) {
 	    	Vote.create({ voter: voterId, food: newList.id }).exec(function (err, created) {
     			if(err) {
 	    			console.log(err);	
 	    			return res.serverError(err);
 	    		}
-	    		return res.json('success');
+	    		return callback();
 	    	});
 	    };
 
@@ -30,21 +29,25 @@ module.exports = {
 	    		if(err) console.log(err);
 		    	voterId = newVoter.id;
 
-		    	for (var i = voteList.length - 1; i >= 0; i--) {
-			    	if (voteList[i] != "") {
-			    		List.findOrCreate({ name: voteList[i] }, { name: voteList[i] }).exec( function (err, converted) {
+		    	async.each(voteList, function (item, callback) {
+		    		if (item != "") {
+			    		List.findOrCreate({ name: item }, { name: item }).exec( function (err, converted) {
 			    			if(err) {
 				    			console.log(err);	
 				    			return res.serverError(err);
 				    		}
-			    			afterVoteList(err, converted);
+				    		afterVoteList(converted, callback);
 			    		});
-			    	}
-			    }
+			    	} else callback();
+		    	}, function(err) {
+		    		if(err) console.log(err);
+		    		return res.json('success');
+		    	})
+
 		    });
 	    };
 
-		var convert = function (name, cb) {
+		var convert = function (name, callback) {
 			var convertedArray = [];
 			var uniqArray = uniq(result[name]);
 			async.each(uniqArray, function (item, callback2) {
@@ -62,7 +65,7 @@ module.exports = {
 				// assign converted array back to result
 				if(err) console.log(err);
 		   		result[name] = convertedArray;
-		   		return cb(null, 'converted');
+		   		return callback(null, 'converted');
 			});	
 		};
 

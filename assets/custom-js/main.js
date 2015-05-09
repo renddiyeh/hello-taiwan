@@ -85,7 +85,7 @@ $(function() {
 			console.log(data)
 			if(data == 'success'){
 				$("#survey")[0].reset();
-				History.pushState({page:5, name: 'finish'}, "Thank you!", "?thank-you");
+				History.pushState({page:4, name: 'finish'}, "Thank you!", "?thank-you");
 			}
 		})
 	})
