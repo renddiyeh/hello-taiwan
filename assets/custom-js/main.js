@@ -19,19 +19,27 @@ $(function() {
     		if(!$(this).val()) {
     			ok = false;
     			$(this).trigger('focus');
-    			return;
+    			return false;
     		}
     	});
     	return ok;
     }
+    var second = 0;
+    var duration = [0,0,0,0];
 
     $('.next').click(function(e) {
     	var q = $(this).attr('data-num');
     	if (q>1) {
     		var section = $(this).closest('.section');
-    		if(validate(section))
+    		if(validate(section)){
+    			duration[q-2] = second - duration[q-3] || second;
     			History.pushState({page:q, name: 'question-' + q}, "Question " + q, "?q=" + q);
-    	} else History.pushState({page:q, name: 'question-' + q}, "Question " + q, "?q=" + q);
+    		}
+    			
+    	} else {
+    		var timer = setInterval(function() {second+=1}, 1000);
+    		History.pushState({page:q, name: 'question-' + q}, "Question " + q, "?q=" + q);
+    	}
     });
 
 	var jobs = [
@@ -67,11 +75,18 @@ $(function() {
 
 	$("#survey").submit(function (e) {
 		e.preventDefault();
-		var data = $(this).serialize()		
+		var data = $(this).serialize();
+		duration[3] = second - duration[2];
+		for (var i = 0; i < duration.length; i++) {
+			data += '&duration%5B%5D=' + duration[i];
+		};
+
 		$.post("/vote", data).done(function(data) {
 			console.log(data)
-			if(data == 'success')
-				$.fn.fullpage.moveTo('finish');
+			if(data == 'success'){
+				$("#survey")[0].reset();
+				History.pushState({page:5, name: 'finish'}, "Thank you!", "?thank-you");
+			}
 		})
 	})
 

@@ -12,8 +12,6 @@ module.exports = {
 	    var voteList = uniq(result.q1_1);
 	    delete result.q1_1;
 
-	    result['ip'] = req.ip;
-
 		var voterId;
 
 	    var afterVoteList = function (err, newList) {

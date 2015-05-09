@@ -59,7 +59,7 @@ module.exports = {
     },
   	email: 'email',
   	comment: 'text',
-    ip: 'ip'
+    duration: 'array'
   }
 };
 
