@@ -8,8 +8,10 @@
 module.exports = {
 	rank: function(req, res) {
 		List.find({}).populate('votes').exec(function (e, list) {
-			list.sort(function(a, b) { return b.votes.length - a.votes.length });
-			res.json(list);
+			var ranked = list
+					.sort(function(a, b) { return b.votes.length - a.votes.length })
+					.filter(function(x) { return x.votes.length > 0 });
+			res.json(ranked);
 		})
 	}
 };

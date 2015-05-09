@@ -1,27 +1,28 @@
-<div class="row">
-	<div class="small-12 medium-6 columns">
-		<h4>大家覺得代表台灣的食物</h4>
-		<table class="allRank">
-			<tr>
-				<th>小吃</th>
-				<th>票數</th>
-			</tr>
-		</table>
+<div id="header">
+	<div class="row">
+		<div class="small-12 column">
+			<h4 class="title">Hello! Taiwan</h4>
+		</div>
 	</div>
-	<div class="small-12 medium-6 columns">
-		<h4>各城市覺得代表台灣的食物</h4>
-		<table>
-			<tr>
-				<th>城市</th>
-				<th>得票狀況</th>
-			</tr>
-		<% for(var i = 0, l = data.length; i < l; i++) { %>
-			<tr>
-		    	<td <%= (i == l-1) ? 'class=lastCity' : '' %>><%= data[i].name %></td>
-		    	<td class="votes-by-city" data-city="<%= data[i].id %>"></td>
-			</tr>
-		<% } %>
-		</table>
+</div>
+<div class="row">
+	<div class="small-12 medium-9 columns map">		
+		<div class="row">
+			<div class="small-12 medium-4 columns">
+				<h4>代表台灣的小吃</h4>
+				<p>中颱紅霞腳步略微加快，影響台灣時間也提早，氣象局預估北轉後</p>
+			</div>
+		</div>
+		<div class="row">
+			<div class="small-12 medium-5 columns">
+				<div id="allRank"></div>
+			</div>
+		</div>
+		
+		<svg id="map" viewBox="0 0 800 800"></svg>
+	</div>
+	<div id="voteByCity" class="small-12 medium-3 columns">
+		
 	</div>
 </div>
 <% block('localScripts', '<script src="custom-js/result.js"></script>') %>
