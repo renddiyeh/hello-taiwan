@@ -1,17 +1,12 @@
-$(function() {
-
-	$('#fullPage').fullpage();
+$(function() {	
+	History.replaceState({page:0, name: 'hello'}, "Hello! Taiwan", '?hello');
 
 	History.Adapter.bind(window,'statechange',function(){ // Note: We are using statechange instead of popstate
         var State = History.getState(); // Note: We are using History.getState() instead of event.statechange
-        var page = State.data.name;
-        $.fn.fullpage.moveTo(page);     	
+        var page = State.data.page;
+        goToSection(page)
     });
-    History.replaceState({page:0, name: 'hello'}, "Hello! Taiwan", '?hello');
-
-	$.fn.fullpage.setMouseWheelScrolling(false);
-    $.fn.fullpage.setAllowScrolling(false);
-
+    
     var validate = function(section) {
     	var ok = true;
     	var required = section.find('[required]');
@@ -85,9 +80,21 @@ $(function() {
 			console.log(data)
 			if(data == 'success'){
 				$("#survey")[0].reset();
-				History.pushState({page:4, name: 'finish'}, "Thank you!", "?thank-you");
+				History.pushState({page:5, name: 'finish'}, "Thank you!", "?thank-you");
 			}
 		})
 	})
+
+	function goToSection (n) {
+    	var target = $('.section').eq(n);
+    	if(target.hasClass('leave')) {
+    		$('.section.show').removeClass('show');
+    		target.removeClass('leave').addClass('show');
+    	} else {
+    		$('.section.show').addClass('leave');
+    		target.addClass('show');
+    	}
+    	
+    }
 
 });
