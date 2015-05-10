@@ -6,7 +6,7 @@ d3.json('/list/rank', function(error, data) {
 
 	var row = d3.select('#allRank').selectAll('div').data(data)
 				.enter().append('div').attr('class', 'row collapse');
-	row.append('div').attr('class', 'small-3 medium-4 columns').text(function(d) { return d.name });
+	row.append('div').attr('class', 'small-3 medium-4 columns').append('p').text(function(d) { return d.name });
 
 	var bar = row.append('div').attr('class', 'small-9 medium-8 columns');
 	bar.append('div').attr('class', 'bar').style('width', function(d) { return scale(d.votes.length) + '%' });
@@ -15,17 +15,28 @@ d3.json('/list/rank', function(error, data) {
 
 d3.json('/city/votes', function(error, data) {
 	if (error) return console.error(error);
+
 	var div = d3.select('#voteByCity').selectAll('div').data(data).enter();
-	var city = div.append('div').attr('class', 'city hide').attr('data-name', function(d) { return d.name });
+	var city = div.append('div').attr('class', 'city' + (Foundation.utils.is_small_only() ? '' : ' hide'))
+    .attr('data-name', function(d) { return d.name });
 	city.append('h5').text(function(d) { return d.name });
+  city.append('div').attr('class', 'desc').append('p').text('500名遊客騎著機車進行1日環島，帶來的是垃圾人潮而非錢潮。');
 
 	var row = city.selectAll('div').data(function(d) { return d.votes }).enter()
 		.append('div').attr('class', 'row collapse');
-	row.append('div').attr('class', 'small-3 medium-4 columns').text(function(d) { return d.food });
+	row.append('div').attr('class', 'small-3 medium-4 columns').append('p').text(function(d) { return d.food });
 
 	var bar = row.append('div').attr('class', 'small-9 medium-8 columns');
 	bar.append('div').attr('class', 'bar').style('width', function(d) { return (d.count)*10 + 'px' });
 	bar.append('div').attr('class', 'vote').text(function(d) { return d.count });
+
+
+  $(window).resize(function() {
+    if(Foundation.utils.is_small_only())
+      $('.city').removeClass('hide');
+    else
+      $('.city').addClass('hide');
+  })
 })
 
 d3.json("js/twCounty2010merge.topo.json", function(error, data) {
@@ -35,7 +46,7 @@ d3.json("js/twCounty2010merge.topo.json", function(error, data) {
 
     //console.log(topodata);
 
-  	var projection = d3.geo.mercator().center([120.979531, 23.978567]).scale(50000);
+  	var projection = d3.geo.mercator().center([120.979531, 23.978567]).scale(60000);
 
  	var geoPath = d3.geo.path().projection(projection);
 
@@ -61,4 +72,5 @@ d3.json("js/twCounty2010merge.topo.json", function(error, data) {
   		$('#voteByCity [data-name='+city+']').removeClass('hide');
   	})
 });
+
 
