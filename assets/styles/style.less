@@ -27,11 +27,12 @@ h1, h2, h3, h4, h5, h6 {
 	background-clip:         padding-box;
 }
 
-@intro-color: #B6F6E5;
+@color0: #B6F6E5;
 @color1: #86DBF2;
 @color2: #f9c37d;
 @color3: #b3e0c8;
 @color4: #cccccc;
+@color5: white;
 
 @sub1: #0071bc;
 @sub3: #4a6d56;
@@ -39,7 +40,6 @@ h1, h2, h3, h4, h5, h6 {
 @submit: white;
 
 #hello {
-	background-color: @intro-color;
 	img {
 		margin: 1em auto;
 	}
@@ -49,11 +49,11 @@ h1, h2, h3, h4, h5, h6 {
   @colorSet: 'color@{var}';
 }
 
-.mixin-loop (@index) when (@index > 0) {
-	#section-@{index}{
-	    .define(@index);
+.mixin-loop (@index) when (@index >= 0) {
+	.bg-@{index}{
+		.define(@index);
 	    background-color: @@colorSet;
-	  }
+	}
 	.mixin-loop(@index - 1);
 }
 .mixin-loop (0) {}
@@ -64,10 +64,11 @@ h1, h2, h3, h4, h5, h6 {
 	font-size: 10pt;
 }
 
-.wrapper {
+#wrapper {
 	min-height: 100vh;
 	position: relative;
 	overflow: hidden;
+	.transition(background .8s);
 }
 
 .section {

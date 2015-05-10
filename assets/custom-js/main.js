@@ -94,6 +94,7 @@ $(function() {
     		$('.section.show').addClass('leave');
     		target.addClass('show');
     	}
+    	$('#wrapper').attr('class', 'bg-' + n);
     	
     }
 
