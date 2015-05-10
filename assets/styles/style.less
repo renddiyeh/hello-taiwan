@@ -77,7 +77,8 @@ h1, h2, h3, h4, h5, h6 {
 	display: table;
 	transform: translateY(100%);
   	width: 100%;
-	.transition(all 1s);
+  	opacity: 0;
+	.transition(all .8s);
 	.fullPage {
 		display: table-cell;
 		text-align: center;
@@ -87,10 +88,12 @@ h1, h2, h3, h4, h5, h6 {
 
 .section.show {
 	transform: translateY(0);
+	opacity: 1;
 }
 
 .show.leave {
 	transform: translateY(-100%);
+	opacity: 0;
 }
 
 .section-1 .subheader {
