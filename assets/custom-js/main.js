@@ -37,6 +37,11 @@ $(function() {
     	}
     });
 
+    $('.prev').click(function(e) {
+    	var q = $(this).attr('data-num');    	
+    	History.pushState({page:q, name: 'question-' + q}, "Question " + q, "?q=" + q);    	
+    });
+
 	var jobs = [
 		'勞務人員','一般技術人員','一般行政、事務職員','業務人員','管理階層',
 		'軍人／政府機關／教職人員','自營業','專門自由業（如：醫師、律師等）',
