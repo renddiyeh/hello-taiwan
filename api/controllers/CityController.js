@@ -59,7 +59,7 @@ module.exports = {
           }
         }, function (e, results) {
           if(e) console.log(e);
-          res.json(results);
+          res.json(results.sort(function(a, b) { return a.id - b.id }));
         })
   	   
       });

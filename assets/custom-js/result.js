@@ -2,7 +2,7 @@ d3.json('/list/rank', function(error, data) {
 	if (error) return console.error(error);
 	// data.name data.votes.length
 	var max = d3.max(data, function(d){ return d.votes.length }),
-		scale = d3.scale.linear().range([1, 80]).domain([1, max]);
+		scale = d3.scale.linear().range([0, 80]).domain([0, max]);
 
 	var row = d3.select('#allRank').selectAll('div').data(data)
 				.enter().append('div').attr('class', 'row collapse');
@@ -16,30 +16,56 @@ d3.json('/list/rank', function(error, data) {
 d3.json('/city/votes', function(error, data) {
 	if (error) return console.error(error);
 
-	var div = d3.select('#voteByCity').selectAll('div').data(data).enter();
-	var city = div.append('div').attr('class', 'city' + (Foundation.utils.is_small_only() ? '' : ' hide'))
+	var div = d3.select('#voteByCityBubble').selectAll('div').data(data).enter();
+	var city = div.append('div').attr('class', 'city hide')
     .attr('data-name', function(d) { return d.name });
 	city.append('h5').text(function(d) { return d.name });
   city.append('div').attr('class', 'desc').append('p').text('500名遊客騎著機車進行1日環島，帶來的是垃圾人潮而非錢潮。');
 
-	var row = city.selectAll('div').data(function(d) { return d.votes }).enter()
-		.append('div').attr('class', 'row collapse');
-	row.append('div').attr('class', 'small-3 medium-4 columns').append('p').text(function(d) { return d.food });
+  city.each(function (item, i) {
+    
+    var max = d3.max(item.votes, function(d){ return d.count }),
+    scale = d3.scale.linear().range([0, 80]).domain([0, max]);
 
-	var bar = row.append('div').attr('class', 'small-9 medium-8 columns');
-	bar.append('div').attr('class', 'bar').style('width', function(d) { return (d.count)*10 + 'px' });
-	bar.append('div').attr('class', 'vote').text(function(d) { return d.count });
+    var row = d3.select(this).selectAll('div').data(function(d) { return d.votes }).enter()
+      .append('div').attr('class', 'row collapse');
 
+    row.append('div').attr('class', 'small-3 medium-4 columns').append('p').text(function(d) { return d.food });
 
-  $(window).resize(function() {
-    if(Foundation.utils.is_small_only())
-      $('.city').removeClass('hide');
-    else
-      $('.city').addClass('hide');
+    var bar = row.append('div').attr('class', 'small-9 medium-8 columns');
+    bar.append('div').attr('class', 'bar').style('width', function(d) { return scale(d.count) + '%' });
+    bar.append('div').attr('class', 'vote').text(function(d) { return d.count });
+
   })
+
+  var accordion = d3.select('#voteByCityAccordion ul').selectAll('li').data(data).enter();
+  var li = accordion.append('li').attr('class', 'accordion-navigation');
+  li.append('a').attr('href', function(d) { return '#city' + d.id }).text(function(d) { return d.name });
+  var content = li.append('div').attr('id', function(d) { return 'city' + d.id }).attr('class', 'content');
+  content.append('span').attr('class', 'desc').append('p').text('500名遊客騎著機車進行1日環島，帶來的是垃圾人潮而非錢潮。');
+
+  content.each(function (item, i) {
+    
+    var max = d3.max(item.votes, function(d){ return d.count }),
+    scale = d3.scale.linear().range([0, 80]).domain([0, max]);
+
+    var row = d3.select(this).selectAll('div').data(function(d) { return d.votes }).enter()
+      .append('div').attr('class', 'row collapse');
+
+    row.append('div').attr('class', 'small-3 medium-4 columns').append('p').text(function(d) { return d.food });
+
+    var bar = row.append('div').attr('class', 'small-9 medium-8 columns');
+    bar.append('div').attr('class', 'bar').style('width', function(d) { return scale(d.count) + '%' });
+    bar.append('div').attr('class', 'vote').text(function(d) { return d.count });
+
+  })
+
+  $(document).foundation();
+
+	
 })
 
-d3.json("js/twCounty2010merge.topo.json", function(error, data) {
+d3.json("/js/twCounty2010merge.topo.json", function(error, data) {
 	if (error) return console.error(error);
 
     var topodata = topojson.feature(data, data.objects.layer1);
@@ -48,7 +74,7 @@ d3.json("js/twCounty2010merge.topo.json", function(error, data) {
 
   	var projection = d3.geo.mercator().center([120.979531, 23.978567]).scale(60000);
 
- 	var geoPath = d3.geo.path().projection(projection);
+ 	  var geoPath = d3.geo.path().projection(projection);
 
   	d3.select("svg#map").append("g")
   		.selectAll("path")
@@ -69,7 +95,7 @@ d3.json("js/twCounty2010merge.topo.json", function(error, data) {
   		$(this).attr('selected', true);
   		var city = $(this).attr('title');
   		$('.city').addClass('hide');
-  		$('#voteByCity [data-name='+city+']').removeClass('hide');
+  		$('#voteByCityBubble [data-name='+city+']').removeClass('hide');
   	})
 });
 
