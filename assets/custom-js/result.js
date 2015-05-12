@@ -58,7 +58,7 @@ d3.json('/city/votes', function(error, data) {
   var accordion = d3.select('#voteByCityAccordion ul').selectAll('li').data(data).enter();
   var li = accordion.append('li').attr('class', 'accordion-navigation');
   li.append('a').attr('href', function(d) { return '#city' + d.id }).text(function(d) { return d.name });
-  var content = li.append('div').attr('id', function(d) { return 'city' + d.id }).attr('class', 'content');
+  var content = li.append('div').attr('id', function(d) { return 'city' + d.id }).attr('class', 'content city');
   content.append('span').attr('class', 'desc').append('p').text('500名遊客騎著機車進行1日環島，帶來的是垃圾人潮而非錢潮。');
 
   content.each(function (item, i) {
@@ -81,8 +81,7 @@ d3.json('/city/votes', function(error, data) {
     if($(this).find('.votes').length > 5) {
       $(this).append('<div><a href="#" class="show-more">Show more...</a>');
       $(this).append('<div><a href="#" class="show-less hide">Show less...</a>');
-    }
-    
+    }    
   });
 
   $(document).foundation();
