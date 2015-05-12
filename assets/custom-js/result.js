@@ -5,12 +5,29 @@ d3.json('/list/rank', function(error, data) {
 		scale = d3.scale.linear().range([0, 80]).domain([0, max]);
 
 	var row = d3.select('#allRank').selectAll('div').data(data)
-				.enter().append('div').attr('class', 'row collapse');
+				.enter().append('div').attr('class', 'row collapse votes hide');
 	row.append('div').attr('class', 'small-3 medium-4 columns').append('p').text(function(d) { return d.name });
 
 	var bar = row.append('div').attr('class', 'small-9 medium-8 columns');
 	bar.append('div').attr('class', 'bar').style('width', function(d) { return scale(d.votes.length) + '%' });
 	bar.append('div').attr('class', 'vote').text(function(d) { return d.votes.length });
+
+  $('#allRank .votes:lt(5)').show();
+  $('#allRank').append('<div><a href="#" class="show-more">Show more...</a></div>');
+  $('#allRank').append('<div><a href="#" class="show-less hide">Show less...</a></div>');
+
+  $('#allRank .show-more').click(function(){
+    var container = $(this).parents('.chart');
+    container.find('.hide').removeClass('hide');
+    $(this).addClass('hide');
+  });
+
+  $('#allRank .show-less').click(function(){
+    var container = $(this).parents('.chart');
+    container.find('.votes:gt(5)').addClass('hide');
+    container.find('.show-more').removeClass('hide');
+    $(this).addClass('hide');
+  });
 });
 
 d3.json('/city/votes', function(error, data) {
@@ -28,7 +45,7 @@ d3.json('/city/votes', function(error, data) {
     scale = d3.scale.linear().range([0, 80]).domain([0, max]);
 
     var row = d3.select(this).selectAll('div').data(function(d) { return d.votes }).enter()
-      .append('div').attr('class', 'row collapse');
+      .append('div').attr('class', 'row collapse votes hide');
 
     row.append('div').attr('class', 'small-3 medium-4 columns').append('p').text(function(d) { return d.food });
 
@@ -50,18 +67,38 @@ d3.json('/city/votes', function(error, data) {
     scale = d3.scale.linear().range([0, 80]).domain([0, max]);
 
     var row = d3.select(this).selectAll('div').data(function(d) { return d.votes }).enter()
-      .append('div').attr('class', 'row collapse');
+      .append('div').attr('class', 'row collapse votes hide');
 
     row.append('div').attr('class', 'small-3 medium-4 columns').append('p').text(function(d) { return d.food });
 
     var bar = row.append('div').attr('class', 'small-9 medium-8 columns');
     bar.append('div').attr('class', 'bar').style('width', function(d) { return scale(d.count) + '%' });
     bar.append('div').attr('class', 'vote').text(function(d) { return d.count });
-
   })
+
+  $('.city').each(function() {
+    $(this).find('.votes:lt(5)').show();
+    if($(this).find('.votes').length > 5) {
+      $(this).append('<div><a href="#" class="show-more">Show more...</a>');
+      $(this).append('<div><a href="#" class="show-less hide">Show less...</a>');
+    }
+    
+  });
 
   $(document).foundation();
 
+  $('.city .show-more').click(function(){
+    var container = $(this).parents('.city');
+    container.find('.hide').removeClass('hide');
+    $(this).addClass('hide');
+  });
+
+  $('.city .show-less').click(function(){
+    var container = $(this).parents('.city');
+    container.find('.votes:gt(5)').addClass('hide');
+    container.find('.show-more').removeClass('hide');
+    $(this).addClass('hide');
+  });
 	
 })
 
@@ -69,8 +106,6 @@ d3.json("/js/twCounty2010merge.topo.json", function(error, data) {
 	if (error) return console.error(error);
 
     var topodata = topojson.feature(data, data.objects.layer1);
-
-    //console.log(topodata);
 
   	var projection = d3.geo.mercator().center([120.979531, 23.978567]).scale(60000);
 
@@ -100,3 +135,8 @@ d3.json("/js/twCounty2010merge.topo.json", function(error, data) {
 });
 
 
+
+
+function showMore(div) {
+  div.find('.votes').show();
+}
