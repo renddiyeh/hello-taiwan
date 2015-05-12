@@ -82,8 +82,8 @@ $(function() {
 		};
 
 		$.post("/vote", data).done(function(data) {
-			console.log(data)
-			if(data == 'success'){
+			
+			if(data !== ''){
 				$("#survey")[0].reset();
 				History.pushState({page:5, name: 'finish'}, "Thank you!", "?thank-you");
 			}
