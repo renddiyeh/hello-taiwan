@@ -32,17 +32,9 @@ module.exports.routes = {
   *                                                                          *
   ***************************************************************************/
 
-  '/': {
-    view: 'index'
-  },
+  '/': 'MainController.index',
 
-  '/result': {
-    view: 'result'
-  },
-
-  '/survey': {
-    view: 'survey'
-  },
+  '/result': 'MainController.result',
 
   'get /city/votes' : 'CityController.votes',
 

@@ -1,10 +1,11 @@
-<form id="survey">	
+<% block('meta', (food!='') ? ('<meta property="og:title" content="自己的外交自己做，代表台灣的小吃是什麼？我選了「' + food + '」，那你呢？"/>') : '<meta property="og:title" content="自己的外交自己做，一起來選出代表台灣的小吃吧！"/>' ) %>
+<form id="survey">
 	<div id="wrapper" class="bg-0">
 		<div class="section show" id="hello" data-anchor="hello">
 			<div class="fullPage text-left">
 				<div class="row">
 					<div class="small-12 medium-8 medium-centered columns">
-						<img src="images/hello-taiwan.gif" alt="hello taiwan cover gif">
+						<img src="/images/hello-taiwan.gif" alt="hello taiwan cover gif">
 					</div>
 					<div class="small-12 medium-9 medium-centered columns">
 						<p>您好，我們是Hello Taiwan團隊，目前正進行一項能代表台灣的小吃調查研究，希望藉此記錄台灣食物地圖的一角。此份調查大約會花您五到十分鐘填答，本調查的區間將從2015年5月7日至5月21日，問卷取得的研究資料將成為我們後續深度研究台灣小吃歷史脈絡的珍貴資料。</p>

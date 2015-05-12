@@ -132,10 +132,3 @@ d3.json("/js/twCounty2010merge.topo.json", function(error, data) {
   		$('#voteByCityBubble [data-name='+city+']').removeClass('hide');
   	})
 });
-
-
-
-
-function showMore(div) {
-  div.find('.votes').show();
-}
