@@ -44,19 +44,23 @@ $(function() {
         History.pushState({page:q, name: 'question-' + q}, "Question " + q, "?q=" + q);     
     };
 
-    $(document).on('touchstart', function(){ alert('hello'); });
-
-    $('.next').click(function() {
-    	nextClick($(this));
-    }).on('touchstart', function() {
+    $(document).on({
+      touchstart: function() {
         nextClick($(this));
-    });
+      },
+      click: function() {
+        nextClick($(this));
+      }
+    }, '.next');
 
-    $('.prev').click(function() {
+    $(document).on({
+      touchstart: function() {
         prevClick($(this));
-    }).on('touchstart', function() {
-        nextClick($(this));
-    });
+      },
+      click: function() {
+        prevClick($(this));
+      }
+    }, '.prev');
     	
 
 	var jobs = [
