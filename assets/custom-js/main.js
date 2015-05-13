@@ -44,7 +44,7 @@ $(function() {
         History.pushState({page:q, name: 'question-' + q}, "Question " + q, "?q=" + q);     
     };
 
-    $(document).on('touchstart', '.next', function(){ alert('hello'); });
+    $(document).on('touchstart', function(){ alert('hello'); });
 
     $('.next').click(function() {
     	nextClick($(this));
