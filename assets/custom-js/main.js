@@ -21,14 +21,14 @@ $(function() {
     }
     var second = 0;
     var duration = [0,0,0,0];
-    var hasDone = [false, false, false];
 
     var nextClick = function(ele) {
         var q = ele.attr('data-num');
         if (q>1) {
             var section = ele.closest('.section');
             if(validate(section)){
-                duration[q-2] = second - duration[q-3] || second;
+                if(duration[q-2] == 0)
+                    duration[q-2] = second - duration[q-3] || second;
                 console.log(duration)
                 History.pushState({page:q, name: 'question-' + q}, "Question " + q, "?q=" + q);
             }
@@ -44,15 +44,17 @@ $(function() {
         History.pushState({page:q, name: 'question-' + q}, "Question " + q, "?q=" + q);     
     };
 
+    $(document).on('touchstart', '.next', function(){ alert('hello'); });
+
     $('.next').click(function() {
     	nextClick($(this));
-    }).on('tap', function() {
+    }).on('touchstart', function() {
         nextClick($(this));
     });
 
     $('.prev').click(function() {
         prevClick($(this));
-    }).on('tap', function() {
+    }).on('touchstart', function() {
         nextClick($(this));
     });
     	
