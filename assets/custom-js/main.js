@@ -50,7 +50,7 @@ $(function() {
 
     $('.prev').click(function() {
         prevClick($(this));
-    })on('touchstart', function() {
+    }).on('touchstart', function() {
         nextClick($(this));
     });
     	
