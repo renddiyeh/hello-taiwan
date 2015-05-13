@@ -237,6 +237,9 @@ button.submit:hover, button.submit:focus {
 
 #allRank {
 	padding-top: 1rem;
+	padding-bottom: 1rem;
+	overflow: hidden;
+	.transition(max-height 800ms);
 }
 
 #voteByCityBubble {
@@ -338,12 +341,11 @@ button.submit:hover, button.submit:focus {
 
 #result {
 	padding-top: 2em;
-	._show {
+	.more {
 		color: @font-color;
 		font-size: .8em;
-		cursor: pointer;
 	}
-	._show:hover {
+	.more:hover {
 		text-decoration: underline;
 	}
 }

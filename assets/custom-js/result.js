@@ -5,14 +5,26 @@ d3.json('/list/rank', function(error, data) {
 		scale = d3.scale.linear().range([0, 80]).domain([0, max]);
 
 	var row = d3.select('#allRank').selectAll('div').data(data)
-				.enter().append('div').attr('class', 'row collapse votes hide');
+				.enter().append('div').attr('class', 'row collapse votes');
 	row.append('div').attr('class', 'small-3 medium-4 columns').append('p').text(function(d) { return d.name });
 
 	var bar = row.append('div').attr('class', 'small-9 medium-8 columns');
 	bar.append('div').attr('class', 'bar').style('width', function(d) { return scale(d.votes.length) + '%' });
 	bar.append('div').attr('class', 'vote').text(function(d) { return d.votes.length });
 
-  $('#allRank .votes:lt(5)').show();
+  $('.more').click(function() {
+    if($(this).hasClass('expanded')){
+      $('#allRank').css('max-height', '9.5em');
+      $(this).html('&raquo; Show more');
+    } else {
+      $('#allRank').css('max-height', '100vh');
+      $(this).html('&laquo; Show less');
+    }    
+
+    $(this).toggleClass('expanded');    
+  })
+
+/*  $('#allRank .votes:lt(5)').show();
   $('#allRank').append('<div><p class="_show show-more">&raquo; Show more...</p></div>');
   $('#allRank').append('<div><p class="_show show-less hide">&laquo; Show less...</p></div>');
 
@@ -27,7 +39,7 @@ d3.json('/list/rank', function(error, data) {
     container.find('.votes:gt(5)').addClass('hide');
     container.find('.show-more').removeClass('hide');
     $(this).addClass('hide');
-  });
+  });*/
 });
 
 d3.json('/city/votes', function(error, data) {
