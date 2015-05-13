@@ -59,6 +59,7 @@ d3.json('/city/votes', function(error, data) {
   var li = accordion.append('li').attr('class', 'accordion-navigation');
   li.append('a').attr('href', function(d) { return '#city' + d.id }).text(function(d) { return d.name });
   var content = li.append('div').attr('id', function(d) { return 'city' + d.id }).attr('class', 'content');
+  content.append('p').text(function(d) { return (d.votes.length==0) ? '這個地區還沒有人來投票，快邀請你的好友來幫忙吧！' : '' });
 
   content.each(function (item, i) {
     

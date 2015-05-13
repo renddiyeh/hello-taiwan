@@ -1,5 +1,5 @@
 $(function() {	
-	History.replaceState({page:0, name: 'hello'}, "Hello! Taiwan", '?hello');
+	History.replaceState({page:0, name: 'hello'}, "Hello Taiwan - 台灣小吃大調查", '?hello');
 
 	History.Adapter.bind(window,'statechange',function(){ // Note: We are using statechange instead of popstate
         var State = History.getState(); // Note: We are using History.getState() instead of event.statechange
@@ -30,18 +30,18 @@ $(function() {
                 if(duration[q-2] == 0)
                     duration[q-2] = second - duration[q-3] || second;
                 console.log(duration)
-                History.pushState({page:q, name: 'question-' + q}, "Question " + q, "?q=" + q);
+                History.pushState({page:q, name: 'question-' + q}, "Hello Taiwan - 台灣小吃大調查 Q" + q, "?q=" + q);
             }
                 
         } else {
             var timer = setInterval(function() {second+=1}, 1000);
-            History.pushState({page:q, name: 'question-' + q}, "Question " + q, "?q=" + q);
+            History.pushState({page:q, name: 'question-' + q}, "Hello Taiwan - 台灣小吃大調查 Q" + q, "?q=" + q);
         }
     }
 
     var prevClick = function(ele) {
         var q = ele.attr('data-num');      
-        History.pushState({page:q, name: 'question-' + q}, "Question " + q, "?q=" + q);     
+        History.pushState({page:q, name: 'question-' + q}, "Hello Taiwan - 台灣小吃大調查 Q" + q, "?q=" + q);     
     };
 
     $(document).on({
@@ -51,7 +51,7 @@ $(function() {
       click: function() {
         nextClick($(this));
       }
-    }, '.next');
+    }, 'img.next');
 
     $(document).on({
       touchstart: function() {
@@ -60,7 +60,7 @@ $(function() {
       click: function() {
         prevClick($(this));
       }
-    }, '.prev');
+    }, 'img.prev');
     	
 
 	var jobs = [
@@ -106,7 +106,7 @@ $(function() {
 			
 			if(data !== ''){
 				$("#survey")[0].reset();
-				History.pushState({page:5, name: 'finish'}, "Thank you!", "?thank-you");
+				History.pushState({page:5, name: 'finish'}, "Hello Taiwan - 台灣小吃大調查 - 完成！", "?thank-you");
 			}
 		})
 	})
