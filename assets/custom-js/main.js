@@ -46,6 +46,7 @@ $(function() {
 
     $(document).on({
       touchstart: function() {
+        alert('hello');
         nextClick($(this));
       },
       click: function() {

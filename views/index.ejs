@@ -5,7 +5,7 @@
 			<div class="fullPage text-left">
 				<div class="row">
 					<div class="small-12 medium-8 medium-centered columns">
-						<img src="/images/hello-taiwan.gif" alt="hello taiwan cover gif">
+						<img id="gif" src="/images/hello-taiwan.gif" alt="hello taiwan cover gif" onload="displayImage(this)">
 					</div>
 					<div class="small-12 medium-9 medium-centered columns">
 						<p>您好，我們是Hello Taiwan團隊，先謝謝您填寫問卷。<br>
@@ -243,5 +243,9 @@
 		</div>
 	</div>
 </form>
-
+<script type="text/javascript">
+function displayImage(ele) {
+    ele.style.opacity=1
+}
+</script>
 <% block('localScripts', '<script src="/custom-js/main.js"></script>') %>
