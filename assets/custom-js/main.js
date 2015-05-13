@@ -44,11 +44,14 @@ $(function() {
         History.pushState({page:q, name: 'question-' + q}, "Question " + q, "?q=" + q);     
     };
 
-    var eventHandler = ('ontouchstart' in document.documentElement ? "touchstart" : "click");
-
-    $('.next').bind(eventHandler, function() {
+    $(document).on({
+      touchstart: function() {
         nextClick($(this));
-    });
+      },
+      click: function() {
+        nextClick($(this));
+      }
+    }, '.next');
 
     $(document).on({
       touchstart: function() {
