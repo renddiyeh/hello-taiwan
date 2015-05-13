@@ -22,25 +22,38 @@ $(function() {
     var second = 0;
     var duration = [0,0,0,0];
 
-    $('.next').click(function(e) {
-    	var q = $(this).attr('data-num');
-    	if (q>1) {
-    		var section = $(this).closest('.section');
-    		if(validate(section)){
-    			duration[q-2] = second - duration[q-3] || second;
-    			History.pushState({page:q, name: 'question-' + q}, "Question " + q, "?q=" + q);
-    		}
-    			
-    	} else {
-    		var timer = setInterval(function() {second+=1}, 1000);
-    		History.pushState({page:q, name: 'question-' + q}, "Question " + q, "?q=" + q);
-    	}
+    var nextClick = function(ele) {
+        var q = ele.attr('data-num');
+        if (q>1) {
+            var section = ele.closest('.section');
+            if(validate(section)){
+                duration[q-2] = second - duration[q-3] || second;
+                History.pushState({page:q, name: 'question-' + q}, "Question " + q, "?q=" + q);
+            }
+                
+        } else {
+            var timer = setInterval(function() {second+=1}, 1000);
+            History.pushState({page:q, name: 'question-' + q}, "Question " + q, "?q=" + q);
+        }
+    }
+
+    var prevClick = function(ele) {
+        var q = ele.attr('data-num');      
+        History.pushState({page:q, name: 'question-' + q}, "Question " + q, "?q=" + q);     
+    };
+
+    $('.next').click(function() {
+    	nextClick($(this));
+    }).on('touchstart', function() {
+        nextClick($(this));
     });
 
-    $('.prev').click(function(e) {
-    	var q = $(this).attr('data-num');    	
-    	History.pushState({page:q, name: 'question-' + q}, "Question " + q, "?q=" + q);    	
+    $('.prev').click(function() {
+        prevClick($(this));
+    })on('touchstart', function() {
+        nextClick($(this));
     });
+    	
 
 	var jobs = [
 		'勞務人員','一般技術人員','一般行政、事務職員','業務人員','管理階層',

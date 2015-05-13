@@ -1,13 +1,13 @@
 @font-family: 'Lantinghei TC', 'Yu Gothic', sans-serif;
-
+@font-color: #595857;
 body {
 	font-family: @font-family;
-	color: #595857;
+	color: @font-color;
 }
 
 h1, h2, h3, h4, h5, h6 {
 	font-family: 'Lato', @font-family;
-	color: #595857;
+	color: @font-color;
 	font-weight: bold;
 }
 
@@ -132,6 +132,10 @@ form label {
 	padding-bottom: 1rem;
 }
 
+button {
+	font-family: @font-family;
+}
+
 button.submit {
 	font-family: @font-family;
 	font-size: 12pt;
@@ -144,6 +148,23 @@ button.submit {
 
 button.submit:hover, button.submit:focus {
 	background-color: rgba(255,255,255,.2);
+}
+
+.button.facebook {
+	font-family: @font-family;
+	line-height: 32px;
+	background-color: #3B5998;
+	padding: .5em 1em .5em .75em;
+	img {
+		vertical-align: text-bottom;
+		margin-right: .4em;
+		width: 20px;
+		height: 20px;
+	}
+}
+
+.button.facebook:hover, .button.facebook:focus {
+	background-color: #355387;
 }
 
 @media only screen and (max-width: 25em) {
@@ -171,7 +192,6 @@ button.submit:hover, button.submit:focus {
 	}
 }
 
-
 @media only screen and (min-width: 40.063em) {
 	.subheader {
 		font-size: 12pt;
@@ -197,10 +217,13 @@ button.submit:hover, button.submit:focus {
 /* Result */
 
 @orange: #f4a75b;
+@light-orange: @orange;
 @mapFill: #c7c7c8;
-@mapStrokeWidth: 1pt;
+@mapStrokeWidth: 2pt;
 @bubbleFill: #f6f6f6;
 @bubbleStroke: #c7c8c8;
+@bubbleFill-heavy: #d8d8d8;
+@bubbleStroke-heavy: #9b9b9b;
 
 #header {
 	background-color: @orange;
@@ -255,20 +278,48 @@ button.submit:hover, button.submit:focus {
 	position: absolute;
 	top: 0;
 	left: 15%;
-	path {
-		fill: @mapFill;
-		stroke: white;
-		stroke-width: @mapStrokeWidth;
-		.transition(200ms);
+	.map {
+		polyline {
+			stroke-width: @mapStrokeWidth / 2;
+			stroke: @bubbleStroke;
+			cursor: pointer;
+		}
+		path {
+			fill: @mapFill;
+			stroke: white;
+			stroke-width: @mapStrokeWidth;
+			.transition(200ms);
+		}
+		path:hover, path[selected] {
+			fill: @orange;
+		}
 	}
-	path:hover, path[selected] {
-		fill: @orange;
+	.city-label {
+		text {
+			font-family: @font-family;
+			cursor: pointer;
+			.transition(200ms);
+		}
+		path {
+			fill: @bubbleFill;
+			stroke: @bubbleStroke;
+			stroke-width: @mapStrokeWidth;
+			cursor: pointer;
+			.transition(200ms);
+		}
+		
+	}
+	.city-label[selected] {
+		path {
+			fill: @orange;
+			stroke: white;
+		}
+		text {
+			fill: white;
+			font-weight: bold;
+		}
 	}
 	z-index: 10;
-}
-
-.qtip-bootstrap{
-	.transition(200ms);
 }
 
 #voteByCity {
@@ -277,6 +328,14 @@ button.submit:hover, button.submit:focus {
 
 #result {
 	padding-top: 2em;
+	._show {
+		color: @font-color;
+		font-size: .8em;
+		cursor: pointer;
+	}
+	._show:hover {
+		text-decoration: underline;
+	}
 }
 
 @media only screen and (min-width: 40.063em) {
@@ -297,7 +356,7 @@ button.submit:hover, button.submit:focus {
 		ul > li {
 			list-style: none;
 			a {				
-				color: #595857;
+				color: @font-color;
 				cursor: text;
 			}
 		}
