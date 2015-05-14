@@ -38,7 +38,9 @@ module.exports.routes = {
 
   'get /city/votes' : 'CityController.votes',
 
-  'get /list/rank' : 'ListController.rank'
+  'get /list/rank' : 'ListController.rank',
+
+  'get /list/max' : 'ListController.max'
 
 
 

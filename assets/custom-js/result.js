@@ -3,16 +3,18 @@ var getRank = function(num, limit) {
   	if (error) return console.error(error);
   	// data.name data.votes.length
     $('#allRank').empty();
-  	var max = d3.max(data, function(d){ return d.votes.length }),
-  		scale = d3.scale.linear().range([0, 80]).domain([0, max]);
+    $.getJSON('/list/max', function(max, e) {
+        var scale = d3.scale.linear().range([0, 80]).domain([0, max]);
 
-  	var row = d3.select('#allRank').selectAll('div').data(data)
-  				.enter().append('div').attr('class', 'row collapse votes');
-  	row.append('div').attr('class', 'small-3 medium-4 columns').append('p').text(function(d) { return d.name });
+        var row = d3.select('#allRank').selectAll('div').data(data)
+              .enter().append('div').attr('class', 'row collapse votes');
+        row.append('div').attr('class', 'small-3 medium-4 columns').append('p').text(function(d) { return d.name });
 
-  	var bar = row.append('div').attr('class', 'small-9 medium-8 columns');
-  	bar.append('div').attr('class', 'bar').style('width', function(d) { return scale(d.votes.length) + '%' });
-  	bar.append('div').attr('class', 'vote').text(function(d) { return d.votes.length });
+        var bar = row.append('div').attr('class', 'small-9 medium-8 columns');
+        bar.append('div').attr('class', 'bar').style('width', function(d) { return scale(d.votes.length) + '%' });
+        bar.append('div').attr('class', 'vote').text(function(d) { return d.votes.length });
+    })
+
 
   /*  $('.more').click(function() {
       if($(this).hasClass('expanded')){
@@ -116,7 +118,7 @@ d3.json('/city/votes', function(error, data) {
   });
 	
 })
-var limit = 5;
+var limit = 10;
 getRank(1, limit);
 $(function() {
   $.getJSON('/list/count', function(data, e) {

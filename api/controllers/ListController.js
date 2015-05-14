@@ -23,6 +23,13 @@ module.exports = {
 					.filter(function(x) { return x.votes.length > 0 });
 			res.json(ranked.length);
 		})
+	},
+	max:  function(req, res) {
+		List.find().populate('votes').exec(function (e, list) {
+			var ranked = list
+					.sort(function(a, b) { return b.votes.length - a.votes.length })
+			res.json(ranked[0].votes.length)
+		})
 	}
 };
 
