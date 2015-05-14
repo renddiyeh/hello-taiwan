@@ -1,46 +1,50 @@
-d3.json('/list/rank', function(error, data) {
-	if (error) return console.error(error);
-	// data.name data.votes.length
-	var max = d3.max(data, function(d){ return d.votes.length }),
-		scale = d3.scale.linear().range([0, 80]).domain([0, max]);
+var getRank = function(num, limit) {
+  d3.json('/list/rank?page=' + num + '&limit=' + limit, function(error, data) {
+  	if (error) return console.error(error);
+  	// data.name data.votes.length
+    $('#allRank').empty();
+  	var max = d3.max(data, function(d){ return d.votes.length }),
+  		scale = d3.scale.linear().range([0, 80]).domain([0, max]);
 
-	var row = d3.select('#allRank').selectAll('div').data(data)
-				.enter().append('div').attr('class', 'row collapse votes');
-	row.append('div').attr('class', 'small-3 medium-4 columns').append('p').text(function(d) { return d.name });
+  	var row = d3.select('#allRank').selectAll('div').data(data)
+  				.enter().append('div').attr('class', 'row collapse votes');
+  	row.append('div').attr('class', 'small-3 medium-4 columns').append('p').text(function(d) { return d.name });
 
-	var bar = row.append('div').attr('class', 'small-9 medium-8 columns');
-	bar.append('div').attr('class', 'bar').style('width', function(d) { return scale(d.votes.length) + '%' });
-	bar.append('div').attr('class', 'vote').text(function(d) { return d.votes.length });
+  	var bar = row.append('div').attr('class', 'small-9 medium-8 columns');
+  	bar.append('div').attr('class', 'bar').style('width', function(d) { return scale(d.votes.length) + '%' });
+  	bar.append('div').attr('class', 'vote').text(function(d) { return d.votes.length });
 
-  $('.more').click(function() {
-    if($(this).hasClass('expanded')){
-      $('#allRank').css('max-height', '9.5em');
-      $(this).html('&raquo; Show more');
-    } else {
-      $('#allRank').css('max-height', '100vh');
-      $(this).html('&laquo; Show less');
-    }    
+  /*  $('.more').click(function() {
+      if($(this).hasClass('expanded')){
+        $('#allRank').css('max-height', '9.5em');
+        $(this).html('&raquo; Show more');
+      } else {
+        $('#allRank').css('max-height', '100vh');
+        $(this).html('&laquo; Show less');
+      }    
 
-    $(this).toggleClass('expanded');    
-  })
+      $(this).toggleClass('expanded');    
+    })*/
 
-/*  $('#allRank .votes:lt(5)').show();
-  $('#allRank').append('<div><p class="_show show-more">&raquo; Show more...</p></div>');
-  $('#allRank').append('<div><p class="_show show-less hide">&laquo; Show less...</p></div>');
 
-  $('#allRank .show-more').click(function(){
-    var container = $(this).parents('.chart');
-    container.find('.hide').removeClass('hide');
-    $(this).addClass('hide');
+  /*  $('#allRank .votes:lt(5)').show();
+    $('#allRank').append('<div><p class="_show show-more">&raquo; Show more...</p></div>');
+    $('#allRank').append('<div><p class="_show show-less hide">&laquo; Show less...</p></div>');
+
+    $('#allRank .show-more').click(function(){
+      var container = $(this).parents('.chart');
+      container.find('.hide').removeClass('hide');
+      $(this).addClass('hide');
+    });
+
+    $('#allRank .show-less').click(function(){
+      var container = $(this).parents('.chart');
+      container.find('.votes:gt(5)').addClass('hide');
+      container.find('.show-more').removeClass('hide');
+      $(this).addClass('hide');
+    });*/
   });
-
-  $('#allRank .show-less').click(function(){
-    var container = $(this).parents('.chart');
-    container.find('.votes:gt(5)').addClass('hide');
-    container.find('.show-more').removeClass('hide');
-    $(this).addClass('hide');
-  });*/
-});
+};
 
 d3.json('/city/votes', function(error, data) {
 	if (error) return console.error(error);
@@ -112,8 +116,25 @@ d3.json('/city/votes', function(error, data) {
   });
 	
 })
-
+var limit = 5;
+getRank(1, limit);
 $(function() {
+  $.getJSON('/list/count', function(data, e) {
+      $('#pag').bootpag({
+        page: 1,
+        maxVisible: 5,
+        total: Math.ceil(data/limit),
+        leap: true,
+        disabledClass: 'unavalible',
+        activeClass: 'current',
+        firstLastUse: false,
+        nextClass: 'arrow',
+        prevClass: 'arrow'
+    }).on("page", function(event, num){
+        getRank(num, limit);
+    });
+  });
+
   var selectCity = function(city) {
     $('#map .map path').attr('selected', false);
     $('#map .city-label').attr('selected', false);

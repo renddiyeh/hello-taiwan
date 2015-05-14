@@ -238,8 +238,10 @@ button.submit:hover, button.submit:focus {
 #allRank {
 	padding-top: 1rem;
 	padding-bottom: 1rem;
-	overflow: hidden;
-	.transition(max-height 800ms);
+}
+
+ul.pagination li.current a, ul.pagination li.current a:hover, ul.pagination li.current a:focus {
+	background: @orange
 }
 
 #voteByCityBubble {
@@ -251,6 +253,7 @@ button.submit:hover, button.submit:focus {
 }
 
 #allRank, #voteByCityBubble, #voteByCityAccordion {
+	z-index: 50;
 	.bar {
 		background-color: @orange;
 		height: 1.2em;
@@ -276,7 +279,6 @@ button.submit:hover, button.submit:focus {
 		font-size: .8em;
 		margin: 0;
 	}
-	z-index: 50;
 }
 
 .accordion {
@@ -285,6 +287,10 @@ button.submit:hover, button.submit:focus {
 	.accordion-navigation a {
 		font-family: @font-family;
 	}
+}
+
+.map {
+	min-height: 80vh;
 }
 
 #map {
@@ -332,7 +338,7 @@ button.submit:hover, button.submit:focus {
 			font-weight: bold;
 		}
 	}
-	z-index: 10;
+	z-index: 0;
 }
 
 #voteByCity {
@@ -363,14 +369,6 @@ button.submit:hover, button.submit:focus {
 			border-color: @bubbleStroke;
 			border-width: 2px;
 			border-style: solid;
-		}
-
-		ul > li {
-			list-style: none;
-			a {				
-				color: @font-color;
-				cursor: text;
-			}
 		}
 
 		/* creates triangle */

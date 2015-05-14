@@ -6,22 +6,8 @@
 	</div>
 </div>
 <div id="result" class="row">
-	<div class="small-12 medium-9 columns map">		
-		<div class="row">
-			<div class="small-12 medium-5 columns">
-				<h4>台灣小吃大PK</h4>
-				<p>來看看大家票選出來最代表台灣的小吃是甚麼呢？<br>
-				<small class="show-for-medium-up">點擊地圖可以比較各縣市的結果喔</small></p>
-				<a href="http://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fhello-taiwan.relab.cc" target="_blank" class="button radius facebook tiny"><img src="images/facebook.svg">點我分享</a>
-			</div>
-		</div>
-		<div class="row">
-			<div class="small-12 medium-6 columns">
-				<div id="allRank" class="chart" style="max-height: 9.5em"></div>
-				<a class="more">&raquo; Show more</a>
-			</div>
-		</div>
-		<div class="show-for-medium-up">
+	<div class="small-12 medium-9 columns map">
+	<div class="show-for-medium-up map-container">
 			<svg id="map" viewBox="500 0 1150 900" >
 				<g class="map">
 					<polyline data-city="金門縣" fill="white" stroke-miterlimit="10" points="966.3,222.6 1002,222.6 1002,315.4 905.9,315.4 905.9,222.6 912.7,222.6"/>
@@ -139,12 +125,46 @@
 				</g>
 
 			</svg>
+		</div>	
+		<div class="row">
+			<div class="small-12 medium-5 columns">
+				<h4>台灣小吃大PK</h4>
+				<p>來看看大家票選出來最代表台灣的小吃是甚麼呢？<br>
+				<small class="show-for-medium-up">點擊地圖可以比較各縣市的結果喔</small></p>
+				<a href="http://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fhello-taiwan.relab.cc" target="_blank" class="button radius facebook tiny"><img src="images/facebook.svg">點我分享</a>
+			</div>
+		</div>
+		<div class="row">
+			<div class="small-12 medium-6 columns">
+				<div id="allRank" class="chart"></div>
+				<div id="pag">
+				</div>
+			</div>
 		</div>
 	</div>
 	<div id="voteByCityBubble" class="small-12 medium-3 columns show-for-medium-up chart"></div>
+</div>
+<div class="row">
 	<div id="voteByCityAccordion" class="small-12 column show-for-small-only chart">
 		<h6>來看看各縣市的數據吧！</h6>
 		<ul class="accordion" data-accordion></ul>
+	</div>
+</div>
+<div class="row">
+	<div class="small-12 medium-8 medium-centered columns">
+		<div id="disqus_thread"></div>
+		<script type="text/javascript">
+		    /* * * CONFIGURATION VARIABLES * * */
+		    var disqus_shortname = 'hellotaiwan';
+		    
+		    /* * * DON'T EDIT BELOW THIS LINE * * */
+		    (function() {
+		        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+		        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+		        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+		    })();
+		</script>
+		<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
 	</div>
 </div>
 <% block('localScripts', '<script src="custom-js/result.js"></script>') %>
