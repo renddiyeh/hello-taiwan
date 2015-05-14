@@ -11,23 +11,21 @@ module.exports = {
 		var limit = req.query.limit || 10;
 		List.find().populate('votes').exec(function (e, list) {
 			var ranked = list
-					.sort(function(a, b) { return b.votes.length - a.votes.length })
-					.filter(function(x) { return x.votes.length > 0 });
+				.sort(function(a, b) { return b.votes.length - a.votes.length })
+				.filter(function(x) { return x.votes.length > 0 });
 
 			res.json(ranked.slice((page-1)*limit, page*limit));
 		})
 	},
 	count: function(req, res) {
 		List.find().populate('votes').exec(function (e, list) {
-			var ranked = list
-					.filter(function(x) { return x.votes.length > 0 });
+			var ranked = list.filter(function(x) { return x.votes.length > 0 });
 			res.json(ranked.length);
 		})
 	},
-	max:  function(req, res) {
+	max: function(req, res) {
 		List.find().populate('votes').exec(function (e, list) {
-			var ranked = list
-					.sort(function(a, b) { return b.votes.length - a.votes.length })
+			var ranked = list.sort(function(a, b) { return b.votes.length - a.votes.length })
 			res.json(ranked[0].votes.length)
 		})
 	}
