@@ -13,7 +13,8 @@ module.exports = {
   	},
   	food: {
   		model: 'list'
-  	}
+  	},
+  	originFood: 'integer'
   }
 };
 
