@@ -104,7 +104,7 @@ $(function() {
 
 		$.post("/vote", data).done(function(data) {
 			
-			if(data !== ''){
+			if(data == 'success'){
 				$("#survey")[0].reset();
 				History.pushState({page:5, name: 'finish'}, "Hello Taiwan - 台灣小吃大調查 - 完成！", "?thank-you");
 			}
@@ -114,11 +114,11 @@ $(function() {
 	function goToSection (n) {
     	var target = $('.section').eq(n);
     	if(target.hasClass('leave')) {
-    		$('.section.show').removeClass('show');
+    		$('.section.show').removeClass('show').addClass('off');
     		target.removeClass('leave').addClass('show');
     	} else {
-    		$('.section.show').addClass('leave');
-    		target.addClass('show');
+    		$('.section.show').removeClass('show').addClass('leave');
+    		target.removeClass('off').addClass('show');
     	}
     	$('#wrapper').attr('class', 'bg-' + n);
     	
