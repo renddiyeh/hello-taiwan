@@ -111,8 +111,12 @@ $(function() {
 		})
 	})
 
+
 	function goToSection (n) {
+        $('.tab-enabled').attr('tabindex', -1).removeClass('tab-enabled');
     	var target = $('.section').eq(n);
+        target.find('[tabindex=-1]').removeAttr('tabindex').addClass('tab-enabled');
+
     	if(target.hasClass('leave')) {
     		$('.section.show').removeClass('show').addClass('off');
     		target.removeClass('leave').addClass('show');
