@@ -40,7 +40,13 @@ module.exports.routes = {
 
   'get /list/rank' : 'ListController.rank',
 
-  'get /list/max' : 'ListController.max'
+  'get /list/max' : 'ListController.max',
+
+  'get /vote/control': 'VoteController.control',
+
+  'post /vote/join': 'VoteController.join',
+
+  'get /vote/join/rec': 'VoteController.joinRec'
 
 
 

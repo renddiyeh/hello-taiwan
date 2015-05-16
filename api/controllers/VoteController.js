@@ -6,7 +6,7 @@
  */
 
 module.exports = {
-	create: function(req, res, next) {
+	create: function(req, res) {
 
 	    var result = req.allParams();
 	    var voteList = uniq(result.q1_1);
@@ -95,6 +95,34 @@ module.exports = {
 		            return objs.indexOf(item) >= 0 ? false : objs.push(item);
 		    });
 		}
+	},
+	control: function(req, res) {
+		List.find().populate('votes').exec(function (e, list) {
+			var ranked = list
+				.sort(function(a, b) { return b.votes.length - a.votes.length })
+				.filter(function(x) { return x.votes.length > 0 });
+			res.view('voteControl', {
+				list: ranked
+			})
+		})
+	},
+	join: function(req, res) {
+		var params = req.query;
+		Vote.update({food: params.subordinate}, {food: params.dominant, originFood: params.subordinate}).exec(function (e, updated) {
+			res.redirect('/vote/control')
+		})
+	},
+	joinRec: function(req, res) {
+		Vote.find({originFood: {'>': 0}}).populate('food').exec(function (e, found) {
+			async.concat(found, function (vote, callback) {
+				List.findOne({id: vote.originFood}).exec(function (err, food) {
+					vote['originFood'] = food;
+					callback(err, vote)
+				})
+			}, function(err, results){
+				res.view('joinRec', {rec: results})
+			})
+		})
 	}
 
 };

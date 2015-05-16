@@ -1,0 +1,53 @@
+<div id="header">
+	<div class="row">
+		<div class="small-12 column">
+			<h4 class="title"><a href="/">Hello Taiwan</a></h4>
+		</div>
+	</div>
+</div>
+<div class="row">
+	<div class="small-6 columns">
+		<h3>View List</h3>
+		<table>
+			<tr>
+				<th>編號</th>
+				<th>名稱</th>
+				<th>票數</th>
+			</tr>
+		<% for (var i = 0, l = list.length; i < l; i++) { %>
+			<tr>
+				<td><%= list[i].id %></td>
+				<td><%= list[i].name %></td>
+				<td><%= list[i].votes.length %></td>
+			</tr>
+		<% }; %>
+		</table>
+	</div>
+	<div class="small-6 columns">
+		<h3>Combine</h3>
+		<form action="/vote/join">
+			<div class="row">
+				<div class="small-3 columns">
+					<label for="dominant">Dominant</label>
+				</div>
+				<div class="small-9 columns">
+					<input type="text" id="dominant" name="dominant">
+				</div>
+			</div>
+			<div class="row">
+				<div class="small-3 columns">
+					<label for="subordinate">Subordinate</label>
+				</div>
+				<div class="small-9 columns">
+					<input type="text" id="subordinate" name="subordinate">
+				</div>
+			</div>
+			<div class="row">
+				<div class="small-12 columns">
+					<input type='hidden' name='_csrf' value='<%= _csrf %>'>
+					<button type="submit">Submit</button>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>

@@ -29,5 +29,6 @@ module.exports = {
 			res.json(ranked[0].votes.length)
 		})
 	}
+
 };
 
