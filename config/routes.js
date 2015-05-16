@@ -33,20 +33,29 @@ module.exports.routes = {
   ***************************************************************************/
 
   '/': 'MainController.index',
-
   '/result': 'MainController.result',
 
   'get /city/votes' : 'CityController.votes',
 
   'get /list/rank' : 'ListController.rank',
-
   'get /list/max' : 'ListController.max',
 
-  'get /vote/control': 'VoteController.control',
+  'get /vote/control': 'AdminController.voteControl',
+  'post /vote/join': 'AdminController.voteJoin',
 
-  'post /vote/join': 'VoteController.join',
+  'get /vote/join/rec': 'VoteController.joinRec',
 
-  'get /vote/join/rec': 'VoteController.joinRec'
+  'get /login': 'AuthController.login',
+  'get /logout': 'AuthController.logout',
+  'get /register': 'AuthController.register',
+   
+  'post /auth/local': 'AuthController.callback',
+  'post /auth/local/:action': 'AuthController.callback',
+
+  'get /auth/:provider': 'AuthController.provider',
+  'get /auth/:provider/callback': 'AuthController.callback',
+  'get /auth/:provider/:action': 'AuthController.callback',
+ 
 
 
 
