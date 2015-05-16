@@ -18,7 +18,6 @@ module.exports = {
 	},
 	voteJoin: function(req, res) {
 		var params = req.body;
-		res.json(params)
 		Vote.update({food: params.subordinate}, {food: params.dominant, originFood: params.subordinate}).exec(function (e, updated) {
 			res.redirect('/vote/control')
 		})
