@@ -35,6 +35,8 @@ module.exports.routes = {
   '/': 'MainController.index',
   '/result': 'MainController.result',
 
+  'get /voter/summary': 'VoterController.summary',
+
   'get /city/votes' : 'CityController.votes',
 
   'get /list/rank' : 'ListController.rank',
