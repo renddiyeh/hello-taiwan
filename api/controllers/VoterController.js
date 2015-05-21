@@ -19,7 +19,7 @@ module.exports = {
 			async.each(found, function(voter, callback) {
 				var q1_1 = voter['q1_1'].length;
 				var q1_2 = voter['q1_2'].length;
-				var q3_l = voter['q3_1'].length;
+				var q3_1 = voter['q3_1'].length;
 				var q3_2 = voter['q3_2'].length;				
 				result['q1_1'][q1_1-1] += 1;
 				result['q1_2'][q1_2-1] += 1;
