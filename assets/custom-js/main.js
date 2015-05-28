@@ -4,7 +4,7 @@ $(function() {
 	History.Adapter.bind(window,'statechange',function(){ // Note: We are using statechange instead of popstate
         var State = History.getState(); // Note: We are using History.getState() instead of event.statechange
         var page = State.data.page;
-        goToSection(page)
+        goToSection(page);
     });
     
     var validate = function(section) {
@@ -29,7 +29,6 @@ $(function() {
             if(validate(section)){
                 if(duration[q-2] == 0)
                     duration[q-2] = second - duration[q-3] || second;
-                console.log(duration)
                 History.pushState({page:q, name: 'question-' + q}, "Hello Taiwan - 台灣小吃大調查 Q" + q, "?q=" + q);
             }
                 
@@ -61,7 +60,16 @@ $(function() {
         prevClick($(this));
       }
     }, 'img.prev');
-    	
+
+    $('body').on('mousewheel', Foundation.utils.throttle(function(e){
+        if(e.originalEvent.wheelDelta > 0) {
+            $('.show .prev').click();
+        }
+        else {
+            $('.show .next').click();
+        }
+    }, 300));
+
 
 	var jobs = [
 		'勞務人員','一般技術人員','一般行政、事務職員','業務人員','管理階層',
@@ -110,7 +118,6 @@ $(function() {
 			}
 		})
 	})
-
 
 	function goToSection (n) {
         $('.tab-enabled').attr('tabindex', -1).removeClass('tab-enabled');
