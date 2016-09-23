@@ -18,14 +18,14 @@ module.exports = {
    ***************************************************************************/
 
   models: {
-    connection: 'someMysqlServer'
+    connection: 'herokuMysqlServer'
   },
 
   /***************************************************************************
    * Set the port in the production environment to 80                        *
    ***************************************************************************/
 
-  // port: 80,
+  port: process.env.PORT || 80,
 
   session: {
     adapter: 'redis'
