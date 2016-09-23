@@ -48,6 +48,14 @@ module.exports.connections = {
     database: 'hellotaiwan'
   },
 
+  herokuMysqlServer: {
+    adapter: 'sails-mysql',
+    host: 'gmgcjwawatv599gq.cbetxkdyhwsb.us-east-1.rds.amazonaws.com',
+    user: 'ucdkclv3h7mlb550',
+    password: 'q9bwthn9lsobpc7f',
+    database: 'y91jvlme2u71wmcs'
+  },
+
   /***************************************************************************
   *                                                                          *
   * MongoDB is the leading NoSQL database.                                   *
