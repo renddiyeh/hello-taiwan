@@ -44,10 +44,13 @@ module.exports.sockets = {
   // -OR-
   //
 
-  // adapter: 'redis',
+  adapter: 'redis',
+  host: 'ec2-23-23-156-130.compute-1.amazonaws.com',
+  port: 19709,
+  pass: 'p50plp19doqfh0lb9j5rktt6uo',
   // host: '127.0.0.1',
   // port: 6379,
-  // db: 'sails',
+  db: 'sails',
   // pass: '<redis auth password>'
 
 
